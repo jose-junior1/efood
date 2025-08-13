@@ -1,4 +1,4 @@
-class FoodClass {
+class RestaurantClass {
     id: number
     image: string
     title: string
@@ -26,4 +26,4 @@ class FoodClass {
     }
 }
 
-export default FoodClass
+export default RestaurantClass

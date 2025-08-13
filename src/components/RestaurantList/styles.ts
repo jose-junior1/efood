@@ -2,7 +2,7 @@ import styled from 'styled-components'
 import { Props } from '.'
 import colors from '../../styles/colors'
 
-export const Container = styled.section<Omit<Props, 'title' | 'foods'>>`
+export const Container = styled.section<Omit<Props, 'title' | 'restaurants'>>`
     padding: 32px 0;
     background-color: ${colors.pureWhite};
 `

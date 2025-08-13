@@ -13,7 +13,7 @@ type Props = {
     about: string
 }
 
-const Food = ({ image, title, nota, description, infos, about }: Props) => (
+const Restaurant = ({ image, title, nota, description, infos, about }: Props) => (
     <Card>
         <img src={image} alt={title} />
         <Infos>
@@ -35,4 +35,4 @@ const Food = ({ image, title, nota, description, infos, about }: Props) => (
     </Card>
 )
 
-export default Food
+export default Restaurant
