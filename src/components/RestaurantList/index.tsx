@@ -18,13 +18,15 @@ const RestaurantList =({ restaurants }: Props) => (
                     nota={rest.nota}
                     image={rest.image}
                     description={rest.description}
+                    star={rest.star}
                     infos={rest.infos}
                     about={rest.about}
+                    id={rest.id}
                 />
             ))}
             </List>
         </div>
-        </Container>
+    </Container>
 )
 
 export default RestaurantList

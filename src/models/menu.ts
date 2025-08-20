@@ -1,32 +1,23 @@
-class RestaurantClass {
+class MenuClass {
     id: number
     image: string
     title: string
-    nota: number
     description: string
-    infos: string
-    about: string
-    star?: string
+    addCart: string
 
     constructor(
         id: number,
         image: string,
         title: string,
-        nota: number,
         description: string,
-        infos: string,
-        about: string,
-        star?: string
+        addCart: string
     ) {
         this.id = id
         this.image = image
         this.title = title
-        this.nota = nota
         this.description = description
-        this.infos = infos
-        this.star = star
-        this.about = about
+        this.addCart = addCart
     }
 }
 
-export default RestaurantClass
+export default MenuClass
