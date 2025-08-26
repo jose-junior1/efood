@@ -60,21 +60,24 @@ const RestaurantMenuList = ({ menu }: MenuProps) => {
                     <S.ModalContainer>
                         <img src={selectedMenu?.foto} alt={selectedMenu?.nome} />
                         <S.Content>
-                            <img
-                                onClick={closeModal}
-                                className='close'
-                                src={closeIcon}
-                                alt="Fechar pop-up"
-                            />
-                            <h3>{selectedMenu?.nome}</h3>
-                            <p>
-                                {selectedMenu?.descricao}
-                                <br />
-                                <br />
-                                <span>
-                                    {selectedMenu?.porcao}
-                                </span>
-                            </p>
+                            <div className='content-text'>
+                                <img
+                                    onClick={closeModal}
+                                    className='close'
+                                    src={closeIcon}
+                                    alt="Fechar pop-up"
+                                />
+                                <h3>{selectedMenu?.nome}</h3>
+                                <p>
+                                    {selectedMenu?.descricao}
+                                    <br />
+                                    <br />
+                                    <span>
+                                        Serve: de {''}
+                                        {selectedMenu?.porcao}
+                                    </span>
+                                </p>
+                            </div>
                             <button>Adicionar ao carrinho - {formataPreco(selectedMenu?.preco)}</button>
                         </S.Content>
                     </S.ModalContainer>

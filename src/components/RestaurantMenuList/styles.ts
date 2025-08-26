@@ -93,10 +93,11 @@ export const ModalContainer = styled.div`
 export const Content = styled.div`
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    justify-content: space-between;
 
     h3 {
         font-size: 18px;
+        margin-bottom: 16px;
     }
 
     p {
