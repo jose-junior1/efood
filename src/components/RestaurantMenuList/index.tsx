@@ -72,10 +72,16 @@ const RestaurantMenuList = ({ menu }: MenuProps) => {
                                     {selectedMenu?.descricao}
                                     <br />
                                     <br />
-                                    <span>
-                                        Serve: de {''}
-                                        {selectedMenu?.porcao}
-                                    </span>
+                                    {selectedMenu?.porcao === '1 pessoa' ? (
+                                        <span>
+                                            Serve: {''} {selectedMenu?.porcao}
+                                        </span>
+                                    ) : (
+                                        <span>
+                                            Serve: de {''}
+                                            {selectedMenu?.porcao}
+                                        </span>
+                                    )}
                                 </p>
                             </div>
                             <button>Adicionar ao carrinho - {formataPreco(selectedMenu?.preco)}</button>
