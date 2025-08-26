@@ -4,18 +4,24 @@ type Props = {
     image: string
     title: string
     description: string
-    addCart: string
+    details: string
+    onOpenModal: () => void
 }
 
-const RestaurantMenu = ({ image, title, description, addCart }: Props) => (
+export interface ModalState {
+    isVisible: boolean
+}
+
+const RestaurantMenu = ({ image, title, description, details, onOpenModal }: Props) => {
+    return (
     <S.Card>
         <img src={image} alt={title} />
         <S.ContainerInfos>
             <S.Title>{title}</S.Title>
             <S.Description>{description}</S.Description>
-            <S.ButtonCart>{addCart}</S.ButtonCart>
         </S.ContainerInfos>
+        <S.ButtonCart onClick={onOpenModal}>{details}</S.ButtonCart>
     </S.Card>
-)
+)}
 
 export default RestaurantMenu

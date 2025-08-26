@@ -4,10 +4,12 @@ import colors from '../../styles/colors'
 export const Card = styled.div`
     background-color: ${colors.rose};
     position: relative;
-    height: 100%;
     width: 100%;
     padding: 8px;
-
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    
     img {
         width: 100%;
         height: 167px;
@@ -16,7 +18,6 @@ export const Card = styled.div`
 `
 
 export const ContainerInfos = styled.div`
-    height: 100%;
     width: 100%;
     padding: 8px 0;
 

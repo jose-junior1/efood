@@ -1,4 +1,3 @@
-// import { Link } from "react-router-dom"
 import Tag from "../Tag"
 import { ButtonAbout, Card, ContainerInfos, Description, Infos, Title } from "./styles"
 

@@ -6,8 +6,10 @@ import { Link } from 'react-router-dom'
 export const Card = styled.div`
     background-color: ${colors.pureWhite};
     position: relative;
-    height: 398px;
-    width: 472px;
+    max-height: 398px;
+    height: 100%;
+    max-width: 472px;
+    width: 100%;
 
     ${TagContainer} {
         display: inline;
@@ -18,16 +20,19 @@ export const Card = styled.div`
         width: 100%;
         height: 217px;
         display: block;
+        object-fit: cover;
     }
 `
 
 export const ContainerInfos = styled.div`
-    height: 181px;
     padding: 8px;
     border-left: 1px solid;
     border-right: 1px solid;
     border-bottom: 1px solid;
     border-color: ${colors.rose};
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
 
     div {
         display: flex;
@@ -57,7 +62,6 @@ export const Description = styled.p`
     line-height: 22px;
     display: block;
     text-align: justify;
-    margin: 16px 0;
 `
 
 export const Infos = styled.div`
@@ -69,11 +73,13 @@ export const Infos = styled.div`
 export const ButtonAbout = styled(Link)`
     background-color: ${colors.rose};
     color: ${colors.white};
-    padding: 4px 6px;
+    padding: 4px 0;
+    text-align: center;
     font-size: 14px;
     font-weight: bold;
     text-decoration: none;
     border: 1px solid transparent;
+    width: 82px;
 
     &:hover {
         background-color: transparent;
