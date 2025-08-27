@@ -20,7 +20,7 @@ export const List = styled.ul`
 
     @media (max-width: 767px) {
         grid-template-columns: 1fr;
-        gap: 30px;
+        gap: 100px;
     }
 `
 export const Modal = styled.div`
