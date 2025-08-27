@@ -25,11 +25,12 @@ const Header = () => {
                 >
                     <Container
                         $page='restaurant'
+                        className='container-restaurant-page'
                     >
                         <LinkToHome to='/' title='Home'>
                             Restaurantes
                         </LinkToHome>
-                        <img src={logo} alt="eFood" />
+                        <img className='restaurant-page-logo' src={logo} alt="eFood" />
                         <Carrinho>
                             <p>0 produto(s) no carrinho</p>
                         </Carrinho>

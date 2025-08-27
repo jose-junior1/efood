@@ -42,7 +42,7 @@ const RestaurantMenuList = ({ menu }: MenuProps) => {
 
     return (
         <>
-            <div className="container">
+            <S.Container className="container">
                 <S.List>
                     {menu.map((mn) => (
                         <RestaurantMenu
@@ -55,7 +55,7 @@ const RestaurantMenuList = ({ menu }: MenuProps) => {
                         />
                     ))}
                 </S.List>
-            </div>
+            </S.Container>
                 <S.Modal className={modal.isVisible ? 'visible' : ''}>
                     <S.ModalContainer>
                         <img src={selectedMenu?.foto} alt={selectedMenu?.nome} />

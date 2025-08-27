@@ -6,8 +6,6 @@ import { Link } from 'react-router-dom'
 export const Card = styled.div`
     background-color: ${colors.pureWhite};
     position: relative;
-    max-height: 398px;
-    height: 100%;
     max-width: 472px;
     width: 100%;
 
@@ -85,5 +83,10 @@ export const ButtonAbout = styled(Link)`
         background-color: transparent;
         color: ${colors.rose};
         border-color: ${colors.rose};
+    }
+
+
+    @media (max-width: 767px) {
+        width: 100%;
     }
 `

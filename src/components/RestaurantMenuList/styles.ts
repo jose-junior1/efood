@@ -1,10 +1,13 @@
 import styled from 'styled-components'
-import { MenuProps } from '.'
 import colors from '../../styles/colors'
 
-export const Container = styled.section<Omit<MenuProps, 'title' | 'restaurants'>>`
+export const Container = styled.section`
     padding: 32px 0;
     background-color: ${colors.pureWhite};
+
+    @media (max-width: 767px) {
+        padding: 32px 16px;
+    }
 `
 
 export const List = styled.ul`
@@ -14,6 +17,11 @@ export const List = styled.ul`
     row-gap: 32px;
     width: 100%;
     margin-top: 48px;
+
+    @media (max-width: 767px) {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
 `
 export const Modal = styled.div`
     display: flex;
@@ -89,6 +97,22 @@ export const ModalContainer = styled.div`
             color: ${colors.white};
         }
     }
+
+    @media (max-width: 767px) {
+        height: 70vh;
+        grid-template-columns: 1fr;
+        gap: 20px;
+        padding: 16px;
+
+        .close {
+            width: 20px;
+            height: 20px;
+        }
+
+        button {
+            width: 100%;
+        }
+    }
 `
 
 export const Content = styled.div`
@@ -104,5 +128,15 @@ export const Content = styled.div`
     p {
         font-size: 14px;
         line-height: 22px;
+    }
+
+    @media (max-width: 767px) {
+        h3 {
+            margin-bottom: 10px;
+        }
+
+        p {
+            line-height: 18px;
+        }
     }
 `

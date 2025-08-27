@@ -16,6 +16,19 @@ export const HeaderBar = styled.header<Props>`
     background-repeat: no-repeat;
     height: ${({ $page }) => $page === 'home' ? '384px' : '125px'};
 
+    .container-restaurant-page {
+        @media (max-width: 767px) {
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 16px;
+    
+            .restaurant-page-logo {
+                position: absolute;
+                top: 0;
+                left: 0;
+            }
+        }
+    }
 `
 export const Container = styled.div<Props>`
     display: flex;
@@ -38,7 +51,6 @@ export const Container = styled.div<Props>`
         height: 100%;
         margin: 0 auto;
     `}
-    
 `
 
 export const LinkToHome = styled(Link)`
@@ -46,6 +58,12 @@ export const LinkToHome = styled(Link)`
     text-decoration: none;
     font-weight: 900;
     font-size: 18px;
+
+    @media (max-width: 767px) {
+        position: absolute;
+        top: 16px;
+        right: 16px;
+    }
 `
 
 export const Title = styled.h1`
