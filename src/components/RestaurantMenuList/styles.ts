@@ -16,7 +16,7 @@ export const List = styled.ul`
     margin-top: 48px;
 `
 export const Modal = styled.div`
-    display: none;
+    display: flex;
     justify-content: center;
     align-items: center;
     position: fixed;
@@ -26,11 +26,12 @@ export const Modal = styled.div`
     width: 100%;
     height: 100%;
     opacity: 0;
-    transition: opacity 1s ease-in-out;
-
+    pointer-events: none;
+    transition: opacity 0.4s ease-in-out;
+    
     &.visible {
-        display: flex;
         opacity: 1;
+        pointer-events: auto;
     }
 
     .overlay {
