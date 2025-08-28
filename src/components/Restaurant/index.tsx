@@ -2,20 +2,9 @@ import Tag from "../Tag"
 import { ButtonAbout, Card, ContainerInfos, Description, Infos, Title } from "./styles"
 
 import starIcon from '../../assets/images/estrela.png'
+import { CardRestaurantProps } from "../../types"
 
-
-type Props = {
-    image: string
-    title: string
-    nota: number
-    description: string
-    star?: string
-    infos: string
-    about: string
-    id: number
-}
-
-const Restaurant = ({ image, title, nota, description, star, infos, about, id }: Props) => (
+const Restaurant = ({ image, title, nota, description, star, infos, about, id }: CardRestaurantProps) => (
     <Card>
         <img src={image} alt={title} />
         <Infos>

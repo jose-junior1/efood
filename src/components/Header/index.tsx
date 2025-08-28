@@ -1,11 +1,22 @@
 import { useLocation } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
 import logo from '../../assets/images/logo.png'
 import { Carrinho, Container, HeaderBar, LinkToHome, Title } from './styles'
+import { open } from '../../store/reducers/cart'
+import { RootReducer } from '../../store'
 
 const Header = () => {
     const location = useLocation()
     const isHomePage = location.pathname === '/'
     const isRestaurantMenuListPage = location.pathname.startsWith('/restaurant/')
+
+    const dispatch = useDispatch()
+
+    const openAside = () => {
+        dispatch(open())
+    }
+
+    const { items } = useSelector((state: RootReducer) => state.cart)
 
     return (
         <>
@@ -31,8 +42,8 @@ const Header = () => {
                             Restaurantes
                         </LinkToHome>
                         <img className='restaurant-page-logo' src={logo} alt="eFood" />
-                        <Carrinho>
-                            <p>0 produto(s) no carrinho</p>
+                        <Carrinho onClick={openAside}>
+                            <p><span>{items.length}</span> produto(s) no carrinho</p>
                         </Carrinho>
                     </Container>
                 </HeaderBar>

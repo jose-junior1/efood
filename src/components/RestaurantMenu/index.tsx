@@ -1,18 +1,11 @@
+import { RestaurantMenuProps } from "../../types"
 import * as S from "./styles"
-
-type Props = {
-    image: string
-    title: string
-    description: string
-    details: string
-    onOpenModal: () => void
-}
 
 export interface ModalState {
     isVisible: boolean
 }
 
-const RestaurantMenu = ({ image, title, description, details, onOpenModal }: Props) => {
+const RestaurantMenu = ({ image, title, description, details, onOpenModal }: RestaurantMenuProps) => {
     return (
     <S.Card>
         <img src={image} alt={title} />

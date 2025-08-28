@@ -1,8 +1,9 @@
 import styled from 'styled-components'
-import { Props } from '.'
+import { RestaurantsProps } from '../../types' 
 import colors from '../../styles/colors'
 
-export const Container = styled.section<Omit<Props, 'title' | 'restaurants'>>`
+export const Container = styled.section<Omit<RestaurantsProps, 'title' | 'restaurants'>>`
+    padding: 32px 0;
     background-color: ${colors.pureWhite};
     display: flex;
     flex-direction: column;
@@ -36,6 +37,6 @@ export const List = styled.ul`
 
     @media (max-width: 767px) {
         grid-template-columns: 1fr;
-        gap: 100px;
+        gap: 30px;
     }
 `

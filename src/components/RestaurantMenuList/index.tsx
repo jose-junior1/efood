@@ -3,14 +3,12 @@ import * as S from './styles'
 import RestaurantMenu from "../RestaurantMenu"
 
 import closeIcon from '../../assets/images/close.png'
-import { MenuRestaurant } from '../../pages/Restaurant'
+import { MenuProps, MenuRestaurant } from '../../types'
+import { useDispatch } from 'react-redux'
+import { add, open } from '../../store/reducers/cart'
 
 export interface ModalState {
     isVisible: boolean
-}
-
-export type MenuProps = {
-    menu: MenuRestaurant[]
 }
 
 export const formataPreco = (preco = 0) => {
@@ -38,7 +36,18 @@ const RestaurantMenuList = ({ menu }: MenuProps) => {
             isVisible: false
         })
     }
-    
+
+    const dispatch = useDispatch()
+
+    const addToCart = () => {
+        if (selectedMenu) {
+            dispatch(add(selectedMenu))
+        }
+        dispatch(open())
+        closeModal()
+    }
+
+
 
     return (
         <>
@@ -56,39 +65,32 @@ const RestaurantMenuList = ({ menu }: MenuProps) => {
                     ))}
                 </S.List>
             </S.Container>
-                <S.Modal className={modal.isVisible ? 'visible' : ''}>
-                    <S.ModalContainer>
-                        <img src={selectedMenu?.foto} alt={selectedMenu?.nome} />
-                        <S.Content>
-                            <div className='content-text'>
-                                <img
-                                    onClick={closeModal}
-                                    className='close'
-                                    src={closeIcon}
-                                    alt="Fechar pop-up"
-                                />
-                                <h3>{selectedMenu?.nome}</h3>
-                                <p>
-                                    {selectedMenu?.descricao}
-                                    <br />
-                                    <br />
-                                    {selectedMenu?.porcao === '1 pessoa' ? (
-                                        <span>
-                                            Serve: {''} {selectedMenu?.porcao}
-                                        </span>
-                                    ) : (
-                                        <span>
-                                            Serve: de {''}
-                                            {selectedMenu?.porcao}
-                                        </span>
-                                    )}
-                                </p>
-                            </div>
-                            <button>Adicionar ao carrinho - {formataPreco(selectedMenu?.preco)}</button>
-                        </S.Content>
-                    </S.ModalContainer>
-                    <div className="overlay" onClick={closeModal}></div>
-                </S.Modal>
+            <S.Modal className={modal.isVisible ? 'visible' : ''}>
+                <S.ModalContainer>
+                    <img src={selectedMenu?.foto} alt={selectedMenu?.nome} />
+                    <S.Content>
+                        <div className='content-text'>
+                            <img
+                                onClick={closeModal}
+                                className='close'
+                                src={closeIcon}
+                                alt="Fechar pop-up"
+                            />
+                            <h3>{selectedMenu?.nome}</h3>
+                            <p>
+                                {selectedMenu?.descricao}
+                                <br />
+                                <br />
+                                <span>
+                                    Serve: {selectedMenu?.porcao === '1 pessoa' ? selectedMenu?.porcao : `de ${selectedMenu?.porcao}`}
+                                </span>
+                            </p>
+                        </div>
+                        <S.Button onClick={ addToCart }>Adicionar ao carrinho - {formataPreco(selectedMenu?.preco)}</S.Button>
+                    </S.Content>
+                </S.ModalContainer>
+                <div className="overlay" onClick={closeModal}></div>
+            </S.Modal>
         </>
     )
 }

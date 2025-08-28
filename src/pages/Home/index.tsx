@@ -1,6 +1,7 @@
-import { useEffect, useState } from "react"
 import RestaurantList from "../../components/RestaurantList"
-import { MenuRestaurant } from "../Restaurant"
+import { MenuRestaurant } from "../../types"
+
+import { useGetOnRestaurantsQuery } from "../../services/api"
 
 export type Restaurants = {
     id: number
@@ -14,18 +15,17 @@ export type Restaurants = {
 }
 
 const Home = () => {
-    const [restaurantes, setRestaurantes] = useState<Restaurants[]>([])
+    const { data: restaurantes } = useGetOnRestaurantsQuery()
 
-    useEffect(() => {
-        fetch('https://ebac-fake-api.vercel.app/api/efood/restaurantes')
-        .then((res) => res.json())
-        .then((res) => setRestaurantes(res))
-    }, [])
-    return(
-        <>
-            <RestaurantList restaurants={restaurantes} />
-        </>
-    )
+    if (restaurantes) {
+        return(
+            <>
+                <RestaurantList restaurants={restaurantes} />
+            </>
+        )
+    }
+
+    return <h4>Carregando...</h4>
 }
 
 export default Home

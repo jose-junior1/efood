@@ -1,14 +1,8 @@
-import { Restaurants } from "../../pages/Home"
+import { RestaurantsProps } from "../../types"
 import Restaurant from "../Restaurant"
 import { Container, List } from "./styles"
 
-
-export type Props = {
-    restaurants: Restaurants[]
-}
-
-const RestaurantList =({ restaurants }: Props) => {
-
+const RestaurantList =({ restaurants }: RestaurantsProps) => {
     return(
     <Container>
         <div className="container">
