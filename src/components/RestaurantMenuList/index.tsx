@@ -4,8 +4,9 @@ import RestaurantMenu from "../RestaurantMenu"
 
 import closeIcon from '../../assets/images/close.png'
 import { MenuProps, MenuRestaurant } from '../../types'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { add, open } from '../../store/reducers/cart'
+import { RootReducer } from '../../store'
 
 export interface ModalState {
     isVisible: boolean
@@ -43,11 +44,16 @@ const RestaurantMenuList = ({ menu }: MenuProps) => {
         if (selectedMenu) {
             dispatch(add(selectedMenu))
         }
+    }
+    
+    const openAside = () => {
         dispatch(open())
         closeModal()
     }
 
+    const { items } = useSelector((state: RootReducer) => state.cart)
 
+    const isInCart = selectedMenu ? items.some((item) => item.id === selectedMenu.id) : false
 
     return (
         <>
@@ -86,7 +92,11 @@ const RestaurantMenuList = ({ menu }: MenuProps) => {
                                 </span>
                             </p>
                         </div>
-                        <S.Button onClick={ addToCart }>Adicionar ao carrinho - {formataPreco(selectedMenu?.preco)}</S.Button>
+                        {isInCart ? (
+                            <S.Button className='added' onClick={openAside} title='Ver no carrinho'>Produto adicionado ao carrinho</S.Button>
+                        ) : (
+                            <S.Button onClick={ addToCart }>Adicionar ao carrinho - {formataPreco(selectedMenu?.preco)}</S.Button>
+                        )}
                     </S.Content>
                 </S.ModalContainer>
                 <div className="overlay" onClick={closeModal}></div>

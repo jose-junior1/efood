@@ -133,6 +133,17 @@ export const Content = styled.div`
         line-height: 22px;
     }
 
+    .added {
+        background-color: ${colors.green};
+        color: ${colors.white};
+
+        &:hover {
+            background-color: ${colors.white};
+            border-color: ${colors.green};
+            color: ${colors.green};
+        }
+    }
+
     @media (max-width: 767px) {
         h3 {
             margin-bottom: 10px;

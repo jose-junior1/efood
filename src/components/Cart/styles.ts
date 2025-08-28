@@ -2,7 +2,7 @@ import styled from "styled-components";
 import colors from "../../styles/colors";
 
 export const CartIcon = styled.button`
-    opacity: 0;
+    opacity: 1;
     position: fixed;
     bottom: 30px;
     right: 16px;
@@ -16,18 +16,20 @@ export const CartIcon = styled.button`
     width: 30px;
     height: 30px;
     border: 1px solid ${colors.rose};
+    cursor: pointer;
+    transition: transform 0.3s ease-in-out;
+
+    &:hover {
+        transform: scale(1.05);
+    }
 
     span {
-        color: ${colors.rose};
+        color: ${colors.white};
         font-size: 16px;
         font-weight: bold;
     }
 
-    .disappear {
-        opacity: 1;
-    }
-
     @media (max-width: 767px) {
-        opacity: 1;
+        transition: none;
     }
 `
