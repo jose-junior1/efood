@@ -67,11 +67,18 @@ export const ModalContainer = styled.div`
     padding: 32px;
     background-color: ${colors.rose};
     color: ${colors.white};
-    
-    .close {
+
+    .close-modal {
         position: absolute;
         top: 8px;
         right: 8px;
+
+        span {
+            display: none;
+        }
+    }
+    
+    .close {
         height: 16px;
         width: 16px;
         cursor: pointer;
@@ -84,23 +91,55 @@ export const ModalContainer = styled.div`
     }
 
     @media (max-width: 767px) {
-        height: 80vh;
+        height: 100dvh;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
         gap: 30px;
         padding: 16px;
+        position: relative;
+        z-index: 2;
 
-        img {
+        .picture{
+            padding-top: 30px;
             width: 100%;
             max-height: 290px;
             height: 100%;
             object-fit: cover;
         }
 
+        .close-modal {
+            display: flex;
+            align-items: center;
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            border-radius: 8px;
+            height: 30px;
+            box-shadow: 0 0 18px rgba(0, 0, 0, 0.3);
+            border: none;
+
+            span {
+                display: block;
+                background-color: rgba(230, 10, 20, 0.2);
+                padding: 6px;
+                height: 30px;
+                border-radius: 8px 0 0 8px;
+                font-size: 1em;
+            }
+
+            p {
+                background-color: rgba(230, 10, 20, 0.8);
+                width: 30px;
+                height: 100%;
+                padding: 6px;
+
+                border-radius: 0 8px 8px 0;
+            }
+        }
+
         .close {
-            width: 20px;
-            height: 20px;
+            position: static;
         }
 
         button {

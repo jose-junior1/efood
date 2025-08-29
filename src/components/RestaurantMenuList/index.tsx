@@ -74,15 +74,20 @@ const RestaurantMenuList = ({ menu }: MenuProps) => {
             </S.Container>
             <S.Modal className={modal.isVisible ? 'visible' : ''}>
                 <S.ModalContainer>
-                    <img src={selectedMenu?.foto} alt={selectedMenu?.nome} />
+                    <img className='picture' src={selectedMenu?.foto} alt={selectedMenu?.nome} />
                     <S.Content>
                         <div>
-                            <img
-                                onClick={closeModal}
-                                className='close'
-                                src={closeIcon}
-                                alt="Fechar pop-up"
-                            />
+                            <div className='close-modal' onClick={closeModal}>
+                                <span>Fechar</span>
+                                <p>
+                                    <img
+                                    className='close'
+                                    src={closeIcon}
+                                    alt="Fechar pop-up"
+                                    title="Fechar pop-up"
+                                />
+                                </p>
+                            </div>
                             <h3>{selectedMenu?.nome}</h3>
                             <p>
                                 {selectedMenu?.descricao}
