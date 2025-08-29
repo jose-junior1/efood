@@ -103,7 +103,6 @@ export const ModalContainer = styled.div`
         .picture{
             padding-top: 30px;
             width: 100%;
-            max-height: 290px;
             height: 100%;
             object-fit: cover;
         }

@@ -198,6 +198,7 @@ export const Item = styled.li`
             display: flex;
             flex-direction: column;
             justify-content: space-between;
+            padding: 8px 0;
         }
 
         h3 {
