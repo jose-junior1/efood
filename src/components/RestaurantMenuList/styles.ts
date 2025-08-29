@@ -84,10 +84,19 @@ export const ModalContainer = styled.div`
     }
 
     @media (max-width: 767px) {
-        height: 70vh;
-        grid-template-columns: 1fr;
-        gap: 20px;
+        height: 80vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        gap: 30px;
         padding: 16px;
+
+        img {
+            width: 100%;
+            max-height: 290px;
+            height: 100%;
+            object-fit: cover;
+        }
 
         .close {
             width: 20px;
@@ -116,6 +125,11 @@ export const Button = styled.button`
         background-color: transparent;
         color: ${colors.white};
     }
+
+    @media (max-width: 767px) {
+            padding: 16px 0;
+            font-size: 16px;
+        }
 `
 
 export const Content = styled.div`
@@ -136,21 +150,30 @@ export const Content = styled.div`
     .added {
         background-color: ${colors.green};
         color: ${colors.white};
+        border-color: transparent;
 
         &:hover {
-            background-color: ${colors.white};
-            border-color: ${colors.green};
-            color: ${colors.green};
+            border-color: transparent;
+        }
+
+        @media (max-width: 767px) {
+            padding: 16px 0;
+            font-size: 16px;
         }
     }
 
     @media (max-width: 767px) {
+        gap: 40px;
+
         h3 {
-            margin-bottom: 10px;
+            margin-bottom: 20px;
+            font-size: 24px;
         }
 
         p {
             line-height: 18px;
+            font-size: 1em;
+            text-align: justify;
         }
     }
 `

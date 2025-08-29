@@ -17,9 +17,9 @@ const Restaurant = () => {
                         <p className="tipo">
                             {restaurant.tipo}
                         </p>
-                        <h2 className="restaurant-name">
+                        <h1 className="restaurant-name">
                             {restaurant.titulo}
-                        </h2>
+                        </h1>
                     </div>
                 </RestaurantCover>
                 <RestaurantMenuList menu={restaurant.cardapio} />

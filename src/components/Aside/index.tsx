@@ -34,7 +34,7 @@ const Aside = () => {
                 <ul>
                     {items.map((item) => (
                         <S.Item key={item.id}>
-                            <img src={item.foto} alt="" />
+                            <img src={item.foto} alt={item.nome} />
                             <div>
                                 <h3>{item.nome}</h3>
                                 <span>{formataPreco(item.preco)}</span>
@@ -43,7 +43,10 @@ const Aside = () => {
                         </S.Item>
                     ))}
                 </ul>
-                <div>
+                <S.Content>
+                    <div className='total'>
+                        <p>Total de itens selecionados: <span>{items.length}</span></p>
+                    </div>
                     <S.Prices>
                         Valor total: <span>{formataPreco(totalPrices())}</span>
                     </S.Prices>
@@ -59,7 +62,7 @@ const Aside = () => {
                             Continuar com a entrega
                         </Button>
                     )}
-                </div>
+                </S.Content>
             </S.Aside>
         </S.Container>
     )

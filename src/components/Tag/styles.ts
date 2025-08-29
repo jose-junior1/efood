@@ -10,4 +10,8 @@ export const TagContainer = styled.div`
     display: flex;
     gap: 8px;
     text-transform: capitalize;
+
+    @media (max-width: 767px) {
+        font-size: 1em;
+    }
 `

@@ -18,9 +18,8 @@ export const HeaderBar = styled.header<Props>`
 
     .container-restaurant-page {
         @media (max-width: 767px) {
-            flex-direction: column;
-            justify-content: flex-end;
-            padding: 16px;
+            justify-content: space-around;
+            align-items: center;
         }
     }
 `
@@ -58,9 +57,6 @@ export const LinkToHome = styled(Link)`
     }
 
     @media (max-width: 767px) {
-        position: absolute;
-        top: 8px;
-        left: 8px;
         padding: 8px;
         border-radius: 8px;
         background-color: ${colors.rose};

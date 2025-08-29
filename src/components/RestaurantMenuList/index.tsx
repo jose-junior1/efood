@@ -43,9 +43,10 @@ const RestaurantMenuList = ({ menu }: MenuProps) => {
     const addToCart = () => {
         if (selectedMenu) {
             dispatch(add(selectedMenu))
+            setSelectedMenu({ ...selectedMenu })
         }
     }
-    
+
     const openAside = () => {
         dispatch(open())
         closeModal()
@@ -75,7 +76,7 @@ const RestaurantMenuList = ({ menu }: MenuProps) => {
                 <S.ModalContainer>
                     <img src={selectedMenu?.foto} alt={selectedMenu?.nome} />
                     <S.Content>
-                        <div className='content-text'>
+                        <div>
                             <img
                                 onClick={closeModal}
                                 className='close'
@@ -95,7 +96,7 @@ const RestaurantMenuList = ({ menu }: MenuProps) => {
                         {isInCart ? (
                             <S.Button className='added' onClick={openAside} title='Ver no carrinho'>Produto adicionado ao carrinho</S.Button>
                         ) : (
-                            <S.Button onClick={ addToCart }>Adicionar ao carrinho - {formataPreco(selectedMenu?.preco)}</S.Button>
+                            <S.Button onClick={addToCart}>Adicionar ao carrinho - {formataPreco(selectedMenu?.preco)}</S.Button>
                         )}
                     </S.Content>
                 </S.ModalContainer>

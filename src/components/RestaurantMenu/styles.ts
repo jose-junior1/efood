@@ -15,6 +15,12 @@ export const Card = styled.div`
         height: 167px;
         display: block;
     }
+
+    @media (max-width: 767px) {
+        img {
+            height: 250px;
+        }
+    }
 `
 
 export const ContainerInfos = styled.div`
@@ -38,6 +44,10 @@ export const Title = styled.h3`
     font-size: 18px;
     display: block;
     color: ${colors.white};
+
+    @media (max-width: 767px) {
+        font-size: 24px;
+    }
 `
 
 export const Description = styled.p`
@@ -47,6 +57,10 @@ export const Description = styled.p`
     text-align: justify;
     margin: 16px 0;
     color: ${colors.white};
+
+    @media (max-width: 767px) {
+        font-size: 1em;
+    }
 `
 
 export const Infos = styled.div`
@@ -70,5 +84,16 @@ export const ButtonCart = styled.button`
         background-color: transparent;
         color: ${colors.white};
         border-color: ${colors.white};
+    }
+
+    @media (max-width: 767px) {
+        font-size: 1em;
+        padding: 16px;
+
+        &:hover {
+            background-color: ${colors.white};
+            color: ${colors.rose};
+            border-color: ${colors.white};
+        }
     }
 `

@@ -25,7 +25,7 @@ export const Container = styled.div`
     }
 
     @media (max-width: 767px) {
-        grid-template-columns: 1fr 60%;
+        grid-template-columns: 1fr 70%;
     }
 `
 
@@ -61,6 +61,7 @@ export const Aside = styled.aside`
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    height: 100%;
 
     button {
         margin-top: 24px;
@@ -72,7 +73,7 @@ export const Aside = styled.aside`
         display: flex;
         flex-direction: column;
         gap: 16px;
-        max-height: 80vh;
+        max-height: 75vh;
         overflow-y: auto;
     }
 
@@ -99,14 +100,39 @@ export const Aside = styled.aside`
         }
     }
 
+    .total {
+        p {
+            display: none;
+        }
+    }
+
     @media (max-width: 767px) {
         box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.5);
+        padding: 10px;
+
+        .total {
+            
+            p {
+                color: ${colors.white};
+                width: 100%;
+                display: flex;
+                justify-content: space-between;
+                font-size: 18px;
+                font-weight: 500;
+            }
+        }
     }
+`
+
+export const Content = styled.div`
+    display: flex;
+    flex-direction: column;
 `
 
 export const Prices = styled.p`
     display: flex;
     justify-content: space-between;
+    align-items: center;
     font-weight: bold;
     font-size: 14px;
     color: ${colors.white};
@@ -116,6 +142,15 @@ export const Prices = styled.p`
         display: block;
         font-size: 12px;
         color: ${colors.white};
+    }
+
+    @media (max-width: 767px) {
+        font-size: 18px;
+        margin: 10px 0;
+
+        span {
+            font-size: 16px;
+        }
     }
 `
 
@@ -154,5 +189,30 @@ export const Item = styled.li`
         background-color: transparent;
         background-image: url(${discard});
         background-size: cover;
+    }
+
+    @media (max-width: 767px) {
+        padding: 0;
+        
+        div {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        h3 {
+            font-size: 1em;
+            padding-right: 8px;
+            margin: 0;
+        }
+
+        span {
+            font-size: 1em;
+        }
+
+        button {
+            width: 24px;
+            height: 24px;
+        }
     }
 `

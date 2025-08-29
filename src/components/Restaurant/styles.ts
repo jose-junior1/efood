@@ -47,12 +47,20 @@ export const ContainerInfos = styled.div`
             height: 21px;
             width: 21px;
         }
+
+        @media (max-width: 767px) {
+            font-size: 18px;
+        }
     }
 `
 
 export const Title = styled.h3`
     font-size: 18px;
     display: block;
+
+    @media (max-width: 767px) {
+        font-size: 24px;
+    }
 `
 
 export const Description = styled.p`
@@ -60,6 +68,10 @@ export const Description = styled.p`
     line-height: 22px;
     display: block;
     text-align: justify;
+
+    @media (max-width: 767px) {
+        font-size: 1em;
+    }
 `
 
 export const Infos = styled.div`
@@ -85,8 +97,9 @@ export const ButtonAbout = styled(Link)`
         border-color: ${colors.rose};
     }
 
-
     @media (max-width: 767px) {
         width: 100%;
+        padding: 16px;
+        font-size: 1em;
     }
 `
