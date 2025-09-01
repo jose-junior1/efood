@@ -1,33 +1,8 @@
-import styled from 'styled-components'
-import colors from '../../styles/colors'
+import styled from "styled-components";
+import colors from "../../styles/colors";
+import { Button } from "../RestaurantMenuList/styles";
 import discard from '../../assets/images/discard.png'
-import { Button } from '../RestaurantMenuList/styles'
 
-
-export const Container = styled.div`
-    z-index: 1;
-    position: fixed;
-    top: 0;
-    left: 0;
-    height: 100%;
-    width: 100%;
-    display: grid;
-    grid-template-columns: 1fr 360px;
-    opacity: 0;
-    pointer-events: none;
-    transform: translateX(100%);
-    transition: transform 0.4s ease-in-out, opacity 0.4s ease-in-out;
-
-    &.is-open {
-        opacity: 1;
-        pointer-events: auto;
-        transform: translateX(0%);
-    }
-
-    @media (max-width: 767px) {
-        grid-template-columns: 1fr 70%;
-    }
-`
 
 export const Overlay = styled.div`
     display: flex;
@@ -52,9 +27,71 @@ export const Overlay = styled.div`
         }
     }
 `
+export const Container = styled.div`
+    z-index: 1;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 360px;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateX(100%);
+    transition: transform 0.4s ease-in-out, opacity 0.4s ease-in-out;
+
+    &.is-open {
+        opacity: 1;
+        pointer-events: auto;
+        transform: translateX(0%);
+    }
+
+    @media (max-width: 767px) {
+        grid-template-columns: 1fr;
+
+        ${Overlay} {
+            display: none;
+        }
+    }
+`
+
+export const ButtonClose = styled.div`
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: absolute;
+    right: 8px;
+    top: 8px;
+    border-radius: 8px;
+    z-index: 1001;
+    background-color: ${colors.rose};
+    color: ${colors.white};
+    box-shadow: 0 0 10px 2px rgba(0, 0, 0, 0.3);
+    opacity: 0;
+    pointer-events: none;
+
+    span {
+        padding: 0 8px;
+        font-weight: bold;
+    }
+
+    b {
+        background-color: rgba(185, 63, 63, 1);
+        padding: 8px 12px;
+        border-radius: 0 8px 8px 0;
+        font-size: 18px;
+    }
+
+    @media (max-width: 767px) {
+        opacity: 1;
+        pointer-events: auto;
+    }
+`
 
 export const Aside = styled.aside`
     z-index: 1;
+    max-width: 100%;
     width: 100%;
     background-color: ${colors.rose};
     padding: 32px 8px 32px 8px;
@@ -62,6 +99,41 @@ export const Aside = styled.aside`
     flex-direction: column;
     justify-content: space-between;
     height: 100%;
+    color: ${colors.white};
+
+    h2 {
+        font-size: 16px;
+        margin-bottom: 16px;
+    }
+
+    .home-group, .card-group {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+    }
+    
+    .home-group {
+        div {
+            max-width: 155px;
+        }
+    }
+
+    .card-group {
+        #cardNumber {
+            width: 228px;
+        }
+
+        #cvv {
+            width: 87px;
+        }
+    }
+
+    .button-group {
+        margin-top: 24px;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+    }
 
     button {
         margin-top: 24px;
@@ -108,7 +180,8 @@ export const Aside = styled.aside`
 
     @media (max-width: 767px) {
         box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.5);
-        padding: 10px;
+        padding: 50px 10px 10px 10px;
+        height: 100%;
 
         .total {
             
@@ -120,6 +193,30 @@ export const Aside = styled.aside`
                 font-size: 18px;
                 font-weight: 500;
             }
+        }
+    }
+`
+
+export const InputGroup = styled.div`
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 8px;
+
+    label {
+        font-size: 14px;
+        font-weight: bold;
+    }
+
+    input {
+        height: 32px;
+        border: 1px solid transparent;
+        font-size: 16px;
+        padding: 0 8px;
+    
+        &:focus {
+            outline: none;
+            border-color: ${colors.green};
         }
     }
 `
@@ -176,6 +273,7 @@ export const Item = styled.li`
 
     span {
         font-size: 14px;
+        color: ${colors.rose};
     }
 
     button {

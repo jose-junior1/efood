@@ -5,7 +5,7 @@ import Footer from "./components/Footer"
 import { Provider } from "react-redux"
 import { store } from "./store"
 import Cart from "./components/Cart"
-import Aside from "./components/Aside"
+import AsideGlobal from "./components/AsideGlobal"
 
 function App() {
   return (
@@ -18,7 +18,7 @@ function App() {
           <Cart />
         </div>
         <Footer />
-        <Aside />
+        <AsideGlobal />
       </div>
     </Provider>
   )

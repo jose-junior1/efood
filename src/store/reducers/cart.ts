@@ -3,7 +3,8 @@ import { CartState, MenuRestaurant } from "../../types"
 
 const initialState: CartState = {
     items: [],
-    isOpen: false
+    isOpen: false,
+    currentStep: 'cart'
 }
 
 const cartSlice = createSlice({
@@ -26,9 +27,18 @@ const cartSlice = createSlice({
         },
         close: (state) => {
             state.isOpen = false
+        },
+        goToDelivery: (state) => {
+            state.currentStep = 'delivery'
+        },
+        goToPayment: (state) => {
+            state.currentStep = 'payment'
+        },
+        backToCart: (state) => {
+            state.currentStep = 'cart'
         }
     }
 })
 
-export const { add, open, close, remove } = cartSlice.actions
+export const { add, open, close, remove, goToDelivery, goToPayment, backToCart } = cartSlice.actions
 export default cartSlice.reducer

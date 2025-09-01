@@ -165,9 +165,15 @@ export const Button = styled.button`
     }
 
     @media (max-width: 767px) {
-            padding: 16px 0;
-            font-size: 16px;
+        padding: 16px 0;
+        font-size: 16px;
+
+        &:hover {
+            border-color: transparent;
+            background-color: ${colors.white};
+            color: ${colors.rose};
         }
+    }
 `
 
 export const Content = styled.div`
