@@ -52,5 +52,5 @@ export type TagProps = {
 export type CartState = {
     items: MenuRestaurant[]
     isOpen: boolean
-    currentStep: 'cart' | 'delivery' | 'payment'
+    currentStep: 'cart' | 'delivery' | 'payment' | 'finish'
 }

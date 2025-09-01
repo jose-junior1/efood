@@ -94,12 +94,13 @@ export const Aside = styled.aside`
     max-width: 100%;
     width: 100%;
     background-color: ${colors.rose};
-    padding: 32px 8px 32px 8px;
+    padding: 32px 8px 8px 8px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     height: 100%;
     color: ${colors.white};
+    box-shadow: 1px 1px 18px 2px rgba(0, 0, 0, 0.5);
 
     h2 {
         font-size: 16px;
@@ -179,7 +180,6 @@ export const Aside = styled.aside`
     }
 
     @media (max-width: 767px) {
-        box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.5);
         padding: 50px 10px 10px 10px;
         height: 100%;
 
@@ -213,6 +213,7 @@ export const InputGroup = styled.div`
         border: 1px solid transparent;
         font-size: 16px;
         padding: 0 8px;
+        background-color: ${colors.white};
     
         &:focus {
             outline: none;
@@ -313,5 +314,19 @@ export const Item = styled.li`
             width: 24px;
             height: 24px;
         }
+    }
+`
+
+export const FinishContent = styled.div`
+    div {
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+    }
+
+    p {
+        font-size: 14px;
+        line-height: 22px;
+        text-align: justify;
     }
 `

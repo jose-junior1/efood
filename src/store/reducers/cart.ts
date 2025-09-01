@@ -36,9 +36,12 @@ const cartSlice = createSlice({
         },
         backToCart: (state) => {
             state.currentStep = 'cart'
+        },
+        goToFinish: (state) => {
+            state.currentStep = 'finish'
         }
     }
 })
 
-export const { add, open, close, remove, goToDelivery, goToPayment, backToCart } = cartSlice.actions
+export const { add, open, close, remove, goToDelivery, goToPayment, backToCart, goToFinish } = cartSlice.actions
 export default cartSlice.reducer

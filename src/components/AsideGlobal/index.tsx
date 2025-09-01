@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from 'react-redux'
 
 import * as S from './styles'
 import { RootReducer } from '../../store'
-import { backToCart, close, goToDelivery, goToPayment, remove } from '../../store/reducers/cart'
+import { backToCart, close, goToDelivery, goToFinish, goToPayment, remove } from '../../store/reducers/cart'
 import { Button } from '../RestaurantMenuList/styles'
 import { formataPreco } from '../RestaurantMenuList'
 
@@ -35,6 +35,15 @@ export const AsideGlobal = () => {
 
     const handleContinuePayment = () => {
         dispatch(goToPayment())
+    }
+
+    const handleFinish = () => {
+        dispatch(goToFinish())
+    }
+
+    const conclude = () => {
+        closeAside()
+        handleCart()
     }
 
     const renderContent = () => {
@@ -144,9 +153,32 @@ export const AsideGlobal = () => {
                         </div>
                     </div>
                     <div className='button-group'>
-                        <Button>Finalizar pagamento</Button>
+                        <Button onClick={handleFinish}>Finalizar pagamento</Button>
                         <Button onClick={handleContinueDelivery}>Voltar para a edição de endereço</Button>
                     </div>
+                </>
+            )
+        } else if (currentStep === 'finish') {
+            return (
+                <>
+                    <S.FinishContent>
+                        <h2>Pedido realizado - (ORDER_ID)</h2>
+                        <div>
+                            <p>
+                                Estamos felizes em informar que seu pedido já está em processo de preparação e, em breve, será entregue no endereço fornecido.
+                            </p>
+                            <p>
+                                Gostaríamos de ressaltar que nossos entregadores não estão autorizados a realizar cobranças extras. 
+                            </p>
+                            <p>
+                                Lembre-se da importância de higienizar as mãos após o recebimento do pedido, garantindo assim sua segurança e bem-estar durante a refeição.
+                            </p>
+                            <p>
+                                Esperamos que desfrute de uma deliciosa e agradável experiência gastronômica. Bom apetite!
+                            </p>
+                        </div>
+                    </S.FinishContent>
+                    <Button onClick={conclude}>Concluir</Button>
                 </>
             )
         }
