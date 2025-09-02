@@ -7,6 +7,7 @@ import { RootReducer } from '../../store'
 import { backToCart, close, goToDelivery, goToFinish, goToPayment, remove } from '../../store/reducers/cart'
 import { Button } from '../RestaurantMenuList/styles'
 import { formataPreco } from '../RestaurantMenuList'
+import { usePurchaseMutation } from '../../services/api'
 
 const validationSchemaDelivery = Yup.object({
     name: Yup.string()
@@ -53,6 +54,8 @@ const validationSchemaPayment = Yup.object({
 export const AsideGlobal = () => {
     const { isOpen, items, currentStep } = useSelector((state: RootReducer) => state.cart)
 
+    const [purchase, { isLoading, isError, data }] = usePurchaseMutation()
+
     const form = useFormik({
         initialValues: {
             // dados de entrega
@@ -76,7 +79,37 @@ export const AsideGlobal = () => {
             // valida se o formulário está preenchido e avança para a próxima seção
             if (currentStep === 'delivery') { // libera para pagamento
                 dispatch(goToPayment())
-            } else if (currentStep === 'payment') { // libera para conclusão do pedido
+            } else if (currentStep === 'payment') { // pega os dados de entrega e pagamento, os envia e libera para a confirmação de pedido
+                const purchaseData = {
+                    products: [
+                        {
+                            id: 1,
+                            price: 300
+                        }
+                    ],
+                    delivery: {
+                        receiver: values.name
+                    },
+                    address: {
+                        description: values.address,
+                        city: values.city,
+                        zipCode: values.cep,
+                        number: Number(values.numberHome),
+                        complement: values.complement
+                    },
+                    payment: {
+                        card: {
+                            name: values.cardName,
+                            number: values.cardNumber,
+                            code: Number(values.cvv),
+                            expires: {
+                                month: Number(values.expirationMonth),
+                                year: Number(values.expirationYear)
+                            }
+                        }
+                    }
+                }
+                purchase(purchaseData)
                 dispatch(goToFinish())
             }
         }
