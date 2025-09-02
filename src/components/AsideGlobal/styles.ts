@@ -49,6 +49,7 @@ export const Container = styled.div`
 
     @media (max-width: 767px) {
         grid-template-columns: 1fr;
+        width: 100%;
 
         ${Overlay} {
             display: none;
@@ -89,6 +90,35 @@ export const ButtonClose = styled.div`
     }
 `
 
+export const InputGroup = styled.div`
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 8px;
+
+    label {
+        font-size: 14px;
+        font-weight: bold;
+    }
+
+    input {
+        height: 32px;
+        max-width: 100%;
+        width: 100%;
+        box-sizing: border-box;
+        border: 1px solid transparent;
+        font-size: 16px;
+        padding: 0 8px;
+        background-color: ${colors.white};
+        color: ${colors.black};
+    
+        &:focus {
+            outline: none;
+            border-color: ${colors.green};
+        }
+    }
+`
+
 export const Aside = styled.aside`
     z-index: 1;
     max-width: 100%;
@@ -101,36 +131,39 @@ export const Aside = styled.aside`
     height: 100%;
     color: ${colors.white};
     box-shadow: 1px 1px 18px 2px rgba(0, 0, 0, 0.5);
-
+    
     h2 {
         font-size: 16px;
         margin-bottom: 16px;
     }
-
-    .home-group, .card-group {
+    
+    form {
         display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: 100%;
+        max-width: 100%;
+        width: 100%;
+    }
+
+    .home-group {
+        display: flex;
+        justify-content: space-between;
+
+        div {
+            max-width: 155px;
+            width: 100%;
+        }
+    }
+    
+    .card-group {
+        display: grid;
+        grid-template-columns: 228px 87px;
         justify-content: space-between;
         width: 100%;
     }
-    
-    .home-group {
-        div {
-            max-width: 155px;
-        }
-    }
-
-    .card-group {
-        #cardNumber {
-            width: 228px;
-        }
-
-        #cvv {
-            width: 87px;
-        }
-    }
 
     .button-group {
-        margin-top: 24px;
         display: flex;
         flex-direction: column;
         gap: 8px;
@@ -182,6 +215,26 @@ export const Aside = styled.aside`
     @media (max-width: 767px) {
         padding: 50px 10px 10px 10px;
         height: 100%;
+        width: 100%;
+
+        .card-group {
+            max-width: 100%;
+            grid-template-columns: 1fr 60px;
+            gap: 16px;
+            justify-content: space-around;
+            width: 100%;
+        }
+
+        .home-group {
+            gap: 16px;
+            div {
+                max-width: 100%;
+            }
+        }
+        
+        ul {
+            height: 70vh;
+        }
 
         .total {
             
@@ -193,31 +246,6 @@ export const Aside = styled.aside`
                 font-size: 18px;
                 font-weight: 500;
             }
-        }
-    }
-`
-
-export const InputGroup = styled.div`
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    margin-bottom: 8px;
-
-    label {
-        font-size: 14px;
-        font-weight: bold;
-    }
-
-    input {
-        height: 32px;
-        border: 1px solid transparent;
-        font-size: 16px;
-        padding: 0 8px;
-        background-color: ${colors.white};
-    
-        &:focus {
-            outline: none;
-            border-color: ${colors.green};
         }
     }
 `
@@ -279,10 +307,10 @@ export const Item = styled.li`
 
     button {
         position: absolute;
-        bottom: 8px;
-        right: 8px;
-        width: 16px;
-        height: 16px;
+        bottom: 4px;
+        right: 4px;
+        width: 22px;
+        height: 22px;
         border: none;
         cursor: pointer;
         background-color: transparent;
