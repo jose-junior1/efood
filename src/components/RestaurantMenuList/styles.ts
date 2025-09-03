@@ -99,7 +99,8 @@ export const ModalContainer = styled.div`
     }
 
     @media (max-width: 767px) {
-        height: 100dvh;
+        max-height: 100dvh;
+        height: 100%;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
@@ -107,10 +108,12 @@ export const ModalContainer = styled.div`
         padding: 16px;
         position: relative;
         z-index: 2;
+        overflow-y: auto;
 
         .picture{
             padding-top: 30px;
             width: 100%;
+            max-height: 100%;
             height: 100%;
             object-fit: cover;
         }

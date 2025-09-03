@@ -117,7 +117,7 @@ export const InputGroup = styled.div`
         max-width: 100%;
         width: 100%;
         box-sizing: border-box;
-        border: 1px solid transparent;
+        border: 2px solid transparent;
         font-size: 16px;
         padding: 0 8px;
         background-color: ${colors.white};
@@ -125,7 +125,19 @@ export const InputGroup = styled.div`
     
         &:focus {
             outline: none;
-            border-color: ${colors.green};
+            border-color: ${colors.blue};
+        }
+
+        &.error {
+            border-color: red;
+            box-shadow: 0 0 6px rgba(0, 0, 0, 0.3);
+            background-color: ${colors.lightRed};
+
+            &::placeholder {
+                text-align: right;
+                color: red;
+                font-weight: bold;
+            }
         }
     }
 `
