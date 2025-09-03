@@ -1,10 +1,12 @@
 import styled from 'styled-components'
+
 import colors from '../../styles/colors'
 
 export const Card = styled.div`
     background-color: ${colors.rose};
     position: relative;
     width: 100%;
+    height: 100%;
     padding: 8px;
     display: flex;
     flex-direction: column;
@@ -14,11 +16,18 @@ export const Card = styled.div`
         width: 100%;
         height: 167px;
         display: block;
+        object-fit: cover;
     }
 
     @media (max-width: 767px) {
         img {
             height: 250px;
+        }
+    }
+
+    @media (min-width: 768px) and (max-width: 1024px) {
+        img {
+            height: 280px;
         }
     }
 `
@@ -61,6 +70,10 @@ export const Description = styled.p`
     @media (max-width: 767px) {
         font-size: 1em;
     }
+
+    @media (min-width: 768px) and (max-width: 1024px) {
+        font-size: 1em;
+    }
 `
 
 export const Infos = styled.div`
@@ -89,6 +102,17 @@ export const ButtonCart = styled.button`
     @media (max-width: 767px) {
         font-size: 1em;
         padding: 16px;
+
+        &:hover {
+            background-color: ${colors.white};
+            color: ${colors.rose};
+            border-color: ${colors.white};
+        }
+    }
+
+    @media (min-width: 768px) and (max-width: 1024px) {
+        font-size: 1em;
+        padding: 8px 0;
 
         &:hover {
             background-color: ${colors.white};

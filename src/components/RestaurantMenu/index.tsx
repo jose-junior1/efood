@@ -1,4 +1,5 @@
 import { RestaurantMenuProps } from "../../types"
+
 import * as S from "./styles"
 
 export interface ModalState {
@@ -8,11 +9,14 @@ export interface ModalState {
 const RestaurantMenu = ({ image, title, description, details, onOpenModal }: RestaurantMenuProps) => {
     return (
     <S.Card>
-        <img src={image} alt={title} />
-        <S.ContainerInfos>
-            <S.Title>{title}</S.Title>
-            <S.Description>{description}</S.Description>
-        </S.ContainerInfos>
+        <div>
+            <img src={image} alt={title} />
+            <S.ContainerInfos>
+                <S.Title>{title}</S.Title>
+                <S.Description>{description}</S.Description>
+            </S.ContainerInfos>
+        </div>
+        
         <S.ButtonCart onClick={onOpenModal}>{details}</S.ButtonCart>
     </S.Card>
 )}

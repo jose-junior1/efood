@@ -1,8 +1,9 @@
-import styled, { css } from "styled-components";
+import styled, { css } from "styled-components"
+import { Link } from "react-router-dom"
 
 import fundo from '../../assets/images/fundo.png'
-import { Link } from "react-router-dom";
-import colors from "../../styles/colors";
+
+import colors from "../../styles/colors"
 
 type Props = {
     $page: string
@@ -15,13 +16,6 @@ export const HeaderBar = styled.header<Props>`
     background-size: cover;
     background-repeat: no-repeat;
     height: ${({ $page }) => $page === 'home' ? '384px' : '125px'};
-
-    .container-restaurant-page {
-        @media (max-width: 767px) {
-            justify-content: space-around;
-            align-items: center;
-        }
-    }
 `
 export const Container = styled.div<Props>`
     display: flex;
@@ -35,15 +29,25 @@ export const Container = styled.div<Props>`
         width: 100%;
         height: 100%;
         margin: 0 auto;
-    `}
-
-    ${({ $page }) => $page === 'restaurant' && css`
+        `}
+        
+        ${({ $page }) => $page === 'restaurant' && css`
         align-items: center;
         justify-content: space-between;
         width: 100%;
         height: 100%;
         margin: 0 auto;
-    `}
+        `}
+        
+        @media (max-width: 767px) {
+            justify-content: space-around;
+            align-items: center;
+        }
+    
+        @media (min-width: 768px) and (max-width: 1024px) {
+            justify-content: space-between;
+            padding: 0 32px;
+        }
 `
 
 export const LinkToHome = styled(Link)`

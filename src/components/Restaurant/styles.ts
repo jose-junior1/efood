@@ -1,13 +1,19 @@
 import styled from 'styled-components'
-import { TagContainer } from '../Tag/styles'
-import colors from '../../styles/colors'
 import { Link } from 'react-router-dom'
+
+import { TagContainer } from '../Tag/styles'
+
+import colors from '../../styles/colors'
 
 export const Card = styled.div`
     background-color: ${colors.pureWhite};
     position: relative;
     max-width: 472px;
     width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 
     ${TagContainer} {
         display: inline;
@@ -30,9 +36,11 @@ export const ContainerInfos = styled.div`
     border-color: ${colors.rose};
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
     gap: 16px;
+    height: 100%;
 
-    div {
+    .capa {
         display: flex;
         justify-content: space-between;
     }
@@ -68,6 +76,7 @@ export const Description = styled.p`
     line-height: 22px;
     display: block;
     text-align: justify;
+    margin-top: 16px;
 
     @media (max-width: 767px) {
         font-size: 1em;
@@ -100,6 +109,12 @@ export const ButtonAbout = styled(Link)`
     @media (max-width: 767px) {
         width: 100%;
         padding: 16px;
+        font-size: 1em;
+    }
+
+    @media (min-width: 768px) and (max-width: 1024px) {
+        width: 100%;
+        padding: 8px 0;
         font-size: 1em;
     }
 `

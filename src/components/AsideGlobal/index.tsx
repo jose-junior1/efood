@@ -1,13 +1,14 @@
 import { useDispatch, useSelector } from 'react-redux'
-import { useFormik } from 'formik' // biblioteca para facilitar criação de formulários
+import { useFormik } from 'formik' // biblioteca para criação de formulários
 import * as Yup from 'yup' // biblioteca para validação de formulários
 
-import * as S from './styles'
-import { RootReducer } from '../../store'
 import { backToCart, close, goToDelivery, goToFinish, goToPayment, remove } from '../../store/reducers/cart'
+import { RootReducer } from '../../store'
 import { Button } from '../RestaurantMenuList/styles'
 import { formataPreco } from '../RestaurantMenuList'
 import { usePurchaseMutation } from '../../services/api'
+
+import * as S from './styles'
 
 const validationSchemaDelivery = Yup.object({
     name: Yup.string()
@@ -54,7 +55,7 @@ const validationSchemaPayment = Yup.object({
 export const AsideGlobal = () => {
     const { isOpen, items, currentStep } = useSelector((state: RootReducer) => state.cart)
 
-    const [purchase, { isLoading, isError, data }] = usePurchaseMutation()
+    const [purchase, {data }] = usePurchaseMutation()
 
     const form = useFormik({
         initialValues: {
@@ -356,11 +357,11 @@ export const AsideGlobal = () => {
                     </div>
                 </form>
             )
-        } else if (currentStep === 'finish') {
+        } else if (currentStep === 'finish' && data) {
             return (
                 <>
                     <S.FinishContent>
-                        <h2>Pedido realizado - (ORDER_ID)</h2>
+                        <h2>Pedido realizado - {data.orderId}</h2>
                         <div>
                             <p>
                                 Estamos felizes em informar que seu pedido já está em processo de preparação e, em breve, será entregue no endereço fornecido.

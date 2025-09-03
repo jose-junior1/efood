@@ -1,6 +1,6 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
-import { Restaurants } from '../pages/Home'
-import { PurchasePayload } from '../types'
+
+import { PurchasePayload, Restaurants } from '../types'
 
 const api = createApi({
     baseQuery: fetchBaseQuery({

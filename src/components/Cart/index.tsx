@@ -1,10 +1,11 @@
 import { useDispatch, useSelector } from 'react-redux'
-import { open } from '../../store/reducers/cart'
 
-import * as S from './styles'
+import { open } from '../../store/reducers/cart'
+import { RootReducer } from '../../store'
 
 import cart from '../../assets/images/cart.png'
-import { RootReducer } from '../../store'
+
+import * as S from './styles'
 
 const Cart = () => {
     const dispatch = useDispatch()

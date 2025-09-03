@@ -1,5 +1,7 @@
 import styled from 'styled-components'
+
 import { RestaurantsProps } from '../../types' 
+
 import colors from '../../styles/colors'
 
 export const Container = styled.section<Omit<RestaurantsProps, 'title' | 'restaurants'>>`
@@ -9,18 +11,22 @@ export const Container = styled.section<Omit<RestaurantsProps, 'title' | 'restau
     flex-direction: column;
     justify-content: center;
     height: 100%;
-
-    @media (max-width: 767px) {
-        padding: 32px 16px;
-    }
-
+    
     .container {
         margin-top: 80px;
         margin-bottom: 120px;
+    }
 
-        @media (max-width: 767px) {
+    @media (max-width: 767px) {
+        padding: 32px 16px;
+
+        .container {
             margin-bottom: 80px;
         }
+    }
+
+    @media (min-width: 768px) and (max-width: 1024px) {
+        padding: 40px 16px;
     }
 `
 
@@ -38,5 +44,10 @@ export const List = styled.ul`
     @media (max-width: 767px) {
         grid-template-columns: 1fr;
         gap: 30px;
+    }
+
+    @media (min-width: 768px) and (max-width: 1024px) {
+        column-gap: 30px;
+        row-gap: 80px;
     }
 `

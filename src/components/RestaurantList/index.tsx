@@ -1,12 +1,14 @@
 import { RestaurantsProps } from "../../types"
+
 import Restaurant from "../Restaurant"
-import { Container, List } from "./styles"
+
+import * as S from "./styles"
 
 const RestaurantList =({ restaurants }: RestaurantsProps) => {
     return(
-    <Container>
+    <S.Container>
         <div className="container">
-            <List>
+            <S.List>
                 {restaurants.map((rest) => (
                     <Restaurant
                         key={rest.id}
@@ -20,9 +22,9 @@ const RestaurantList =({ restaurants }: RestaurantsProps) => {
                         id={rest.id}
                     />
                 ))}
-            </List>
+            </S.List>
         </div>
-    </Container>
+    </S.Container>
 )}
 
 export default RestaurantList

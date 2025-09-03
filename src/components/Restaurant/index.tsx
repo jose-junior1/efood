@@ -1,13 +1,15 @@
-import Tag from "../Tag"
-import { ButtonAbout, Card, ContainerInfos, Description, Infos, Title } from "./styles"
-
-import starIcon from '../../assets/images/estrela.png'
 import { CardRestaurantProps } from "../../types"
 
+import Tag from "../Tag"
+
+import starIcon from '../../assets/images/estrela.png'
+
+import * as S from "./styles"
+
 const Restaurant = ({ image, title, nota, description, star, infos, about, id }: CardRestaurantProps) => (
-    <Card>
+    <S.Card>
         <img src={image} alt={title} />
-        <Infos>
+        <S.Infos>
             <Tag>
                 {infos}
             </Tag>
@@ -16,19 +18,21 @@ const Restaurant = ({ image, title, nota, description, star, infos, about, id }:
                     {star}
                 </Tag>
             )}
-        </Infos>
-        <ContainerInfos>
+        </S.Infos>
+        <S.ContainerInfos>
             <div>
-                <Title>{title}</Title>
-                <div className="nota">
-                    {nota}
-                    <img src={starIcon} alt="Estrela" />
+                <div className="capa">
+                    <S.Title>{title}</S.Title>
+                    <div className="nota">
+                        {nota}
+                        <img src={starIcon} alt="Estrela" />
+                    </div>
                 </div>
+                <S.Description>{description}</S.Description>
             </div>
-            <Description>{description}</Description>
-            <ButtonAbout to={`/restaurant/${id}`}>{about}</ButtonAbout>
-        </ContainerInfos>
-    </Card>
+            <S.ButtonAbout to={`/restaurant/${id}`}>{about}</S.ButtonAbout>
+        </S.ContainerInfos>
+    </S.Card>
 )
 
 export default Restaurant

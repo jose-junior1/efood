@@ -1,9 +1,12 @@
 import { useLocation } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import logo from '../../assets/images/logo.png'
-import { Carrinho, Container, HeaderBar, LinkToHome, Title } from './styles'
+
 import { open } from '../../store/reducers/cart'
 import { RootReducer } from '../../store'
+
+import logo from '../../assets/images/logo.png'
+
+import * as S from './styles'
 
 const Header = () => {
     const location = useLocation()
@@ -21,32 +24,32 @@ const Header = () => {
     return (
         <>
             {isHomePage && (
-                <HeaderBar $page='home'>
-                    <Container $page='home'>
+                <S.HeaderBar $page='home'>
+                    <S.Container $page='home'>
                         <div>
                             <img src={logo} alt="eFood" />
                         </div>
-                        <Title>Viva experiências gastronômicas no conforto da sua casa</Title>
-                    </Container>
-                </HeaderBar>
+                        <S.Title>Viva experiências gastronômicas no conforto da sua casa</S.Title>
+                    </S.Container>
+                </S.HeaderBar>
             )}
             {isRestaurantMenuListPage && (
-                <HeaderBar
+                <S.HeaderBar
                     $page='restaurant'
                 >
-                    <Container
+                    <S.Container
                         $page='restaurant'
                         className='container-restaurant-page'
                     >
-                        <LinkToHome to='/' title='Home'>
+                        <S.LinkToHome to='/' title='Home'>
                             Restaurantes
-                        </LinkToHome>
+                        </S.LinkToHome>
                         <img className='restaurant-page-logo' src={logo} alt="eFood" />
-                        <Carrinho onClick={openAside}>
+                        <S.Carrinho onClick={openAside}>
                             <p><span>{items.length}</span> produto(s) no carrinho</p>
-                        </Carrinho>
-                    </Container>
-                </HeaderBar>
+                        </S.Carrinho>
+                    </S.Container>
+                </S.HeaderBar>
             )}
         </>
     )

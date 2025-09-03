@@ -1,12 +1,15 @@
 import { useState } from 'react'
-import * as S from './styles'
+import { useDispatch, useSelector } from 'react-redux'
+
+import { MenuProps, MenuRestaurant } from '../../types'
+import { add, open } from '../../store/reducers/cart'
+import { RootReducer } from '../../store'
+
 import RestaurantMenu from "../RestaurantMenu"
 
 import closeIcon from '../../assets/images/close.png'
-import { MenuProps, MenuRestaurant } from '../../types'
-import { useDispatch, useSelector } from 'react-redux'
-import { add, open } from '../../store/reducers/cart'
-import { RootReducer } from '../../store'
+
+import * as S from './styles'
 
 export interface ModalState {
     isVisible: boolean

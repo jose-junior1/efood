@@ -1,18 +1,6 @@
-import RestaurantList from "../../components/RestaurantList"
-import { MenuRestaurant } from "../../types"
-
 import { useGetOnRestaurantsQuery } from "../../services/api"
 
-export type Restaurants = {
-    id: number
-    titulo: string
-    destacado: boolean
-    tipo: string
-    avaliacao: number
-    descricao: string
-    capa: string
-    cardapio: MenuRestaurant[]
-}
+import RestaurantList from "../../components/RestaurantList"
 
 const Home = () => {
     const { data: restaurantes } = useGetOnRestaurantsQuery()
