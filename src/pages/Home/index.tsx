@@ -13,7 +13,11 @@ const Home = () => {
         )
     }
 
-    return <h4>Carregando...</h4>
+    return (
+        <div className="container-loading">
+            <h4>Carregando...</h4>
+        </div>
+    )
 }
 
 export default Home

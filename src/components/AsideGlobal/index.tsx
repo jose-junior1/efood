@@ -169,7 +169,7 @@ export const AsideGlobal = () => {
                                     <h3>{item.nome}</h3>
                                     <span>{formataPreco(item.preco)}</span>
                                 </div>
-                                <button onClick={() => removeItem(item.id)} type="button" title="Remover" />
+                                <button onClick={() => removeItem(item.id)} type="button" title={`Remover ${item.nome}`} />
                             </S.Item>
                         ))}
                     </ul>
@@ -183,7 +183,7 @@ export const AsideGlobal = () => {
                         {items.length === 0 ? (
                             <div className='blocked'>
                                 <span />
-                                <Button title="Clique aqui para continuar com a compra" type="button">
+                                <Button title="Adicione itens no carrinho para continuar" type="button">
                                     Adicione itens no carrinho para continuar
                                 </Button>
                             </div>
@@ -276,8 +276,8 @@ export const AsideGlobal = () => {
                         </S.InputGroup>
                     </div>
                     <div className='button-group'>
-                        <Button type='submit'>Continuar com o pagamento</Button>
-                        <Button type='button' onClick={handleCart}>Voltar para o carrinho</Button>
+                        <Button type='submit' title="Clique aqui para continuar com o pagamento">Continuar com o pagamento</Button>
+                        <Button type='button' onClick={handleCart} title="Clique aqui para voltar ao carrinho">Voltar para o carrinho</Button>
                     </div>
                 </form>
             )
@@ -352,8 +352,8 @@ export const AsideGlobal = () => {
                         </div>
                     </div>
                     <div className='button-group'>
-                        <Button type='submit'>Finalizar pagamento</Button>
-                        <Button type='button' onClick={handleContinueDelivery}>Voltar para a edição de endereço</Button>
+                        <Button type='submit' title="Clique aqui para finalizar o pedido">Finalizar pagamento</Button>
+                        <Button type='button' onClick={handleContinueDelivery} title="Clique aqui para voltar para editar o endereço">Voltar para a edição de endereço</Button>
                     </div>
                 </form>
             )
@@ -377,7 +377,7 @@ export const AsideGlobal = () => {
                             </p>
                         </div>
                     </S.FinishContent>
-                    <Button onClick={conclude}>Concluir</Button>
+                    <Button onClick={conclude} title="Clique aqui para concluir">Concluir</Button>
                 </>
             )
         }

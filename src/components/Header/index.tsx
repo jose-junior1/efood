@@ -1,7 +1,7 @@
 import { useLocation } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 
-import { open } from '../../store/reducers/cart'
+import { backToCart, open } from '../../store/reducers/cart'
 import { RootReducer } from '../../store'
 
 import logo from '../../assets/images/logo.png'
@@ -17,6 +17,7 @@ const Header = () => {
 
     const openAside = () => {
         dispatch(open())
+        dispatch(backToCart())
     }
 
     const { items } = useSelector((state: RootReducer) => state.cart)
@@ -41,11 +42,11 @@ const Header = () => {
                         $page='restaurant'
                         className='container-restaurant-page'
                     >
-                        <S.LinkToHome to='/' title='Home'>
+                        <S.LinkToHome to='/' title='Clique aqui para voltar para a página inicial'>
                             Restaurantes
                         </S.LinkToHome>
                         <img className='restaurant-page-logo' src={logo} alt="eFood" />
-                        <S.Carrinho onClick={openAside}>
+                        <S.Carrinho onClick={openAside} title={items.length === 1 ? "Clique aqui para ver o produto no carrinho" : items.length === 0 ? "Clique aqui para ver o carrinho vazio" : "Clique aqui para ver os produtos no carrinho"}>
                             <p><span>{items.length}</span> produto(s) no carrinho</p>
                         </S.Carrinho>
                     </S.Container>

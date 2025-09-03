@@ -30,7 +30,11 @@ const Restaurant = () => {
         )
     }
 
-    return <h4>Carregando restaurante...</h4>
+    return (
+        <div className="container-loading">
+            <h4>Carregando...</h4>
+        </div>
+    )
 
 }
 

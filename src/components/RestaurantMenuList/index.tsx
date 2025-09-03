@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
 import { MenuProps, MenuRestaurant } from '../../types'
-import { add, open } from '../../store/reducers/cart'
+import { add, backToCart, open } from '../../store/reducers/cart'
 import { RootReducer } from '../../store'
 
 import RestaurantMenu from "../RestaurantMenu"
@@ -52,6 +52,7 @@ const RestaurantMenuList = ({ menu }: MenuProps) => {
 
     const openAside = () => {
         dispatch(open())
+        dispatch(backToCart())
         closeModal()
     }
 
@@ -102,9 +103,9 @@ const RestaurantMenuList = ({ menu }: MenuProps) => {
                             </p>
                         </div>
                         {isInCart ? (
-                            <S.Button className='added' onClick={openAside} title='Ver no carrinho'>Produto adicionado ao carrinho</S.Button>
+                            <S.Button className='added' onClick={openAside} title='Clique aqui para ver no carrinho'>Produto adicionado ao carrinho</S.Button>
                         ) : (
-                            <S.Button onClick={addToCart}>Adicionar ao carrinho - {formataPreco(selectedMenu?.preco)}</S.Button>
+                            <S.Button onClick={addToCart} title={`Clique aqui para adicionar ao carrinho`}>Adicionar ao carrinho - {formataPreco(selectedMenu?.preco)}</S.Button>
                         )}
                     </S.Content>
                 </S.ModalContainer>

@@ -30,14 +30,25 @@ export const GlobalStyles = createGlobalStyle`
         position: relative;
     }
 
+    .container-loading {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
     .content-master {
         display: flex;
         flex-direction: column;
         min-height: 100vh;
+        height: 100%;
     }
 
     .content {
         flex: 1;
+        height: 100%;
     }
 `
 
