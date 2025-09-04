@@ -1,5 +1,3 @@
-import { CardRestaurantProps } from "../../types"
-
 import Tag from "../Tag"
 
 import starIcon from '../../assets/images/estrela.png'

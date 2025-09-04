@@ -1,5 +1,3 @@
-import { RestaurantMenuProps } from "../../types"
-
 import * as S from "./styles"
 
 const RestaurantMenu = ({ image, title, description, details, onOpenModal }: RestaurantMenuProps) => {

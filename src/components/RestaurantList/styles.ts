@@ -1,6 +1,4 @@
-import styled from 'styled-components'
-
-import { RestaurantsProps } from '../../types' 
+import styled from 'styled-components' 
 
 import colors from '../../styles/colors'
 

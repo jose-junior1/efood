@@ -1,5 +1,3 @@
-import { RestaurantsProps } from "../../types"
-
 import Loader from "../Loader"
 import Restaurant from "../Restaurant"
 

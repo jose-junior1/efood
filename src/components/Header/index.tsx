@@ -46,7 +46,7 @@ const Header = () => {
                             Restaurantes
                         </S.LinkToHome>
                         <img className='restaurant-page-logo' src={logo} alt="eFood" />
-                        <S.Carrinho onClick={openAside} title={items.length === 1 ? "Clique aqui para ver o produto no carrinho" : items.length === 0 ? "Clique aqui para ver o carrinho vazio" : "Clique aqui para ver os produtos no carrinho"}>
+                        <S.Carrinho role='button' onClick={openAside} title={items.length === 1 ? "Clique aqui para ver o produto no carrinho" : items.length === 0 ? "Clique aqui para ver o carrinho vazio" : "Clique aqui para ver os produtos no carrinho"}>
                             <p><span>{items.length}</span> produto(s) no carrinho</p>
                         </S.Carrinho>
                     </S.Container>

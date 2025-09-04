@@ -1,7 +1,6 @@
 import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
-import { MenuProps, MenuRestaurant } from '../../types'
 import { add, backToCart, open } from '../../store/reducers/cart'
 import { RootReducer } from '../../store'
 import { parseToBrl } from '../../utils'

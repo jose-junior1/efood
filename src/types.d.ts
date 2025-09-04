@@ -1,4 +1,4 @@
-export type MenuRestaurant = {
+declare type MenuRestaurant = {
     foto: string
     preco: number
     id: number
@@ -7,12 +7,12 @@ export type MenuRestaurant = {
     porcao: string
 }
 
-export type MenuProps = {
+declare type MenuProps = {
     menu: MenuRestaurant[]
     isLoading: boolean
 }
 
-export type Restaurants = {
+declare type Restaurants = {
     id: number
     titulo: string
     destacado: boolean
@@ -23,12 +23,12 @@ export type Restaurants = {
     cardapio: MenuRestaurant[]
 }
 
-export type RestaurantsProps = {
+declare type RestaurantsProps = {
     isLoading: boolean
     restaurants: Restaurants[]
 }
 
-export type CardRestaurantProps = {
+declare type CardRestaurantProps = {
     image: string
     title: string
     nota: number
@@ -39,7 +39,7 @@ export type CardRestaurantProps = {
     id: number
 }
 
-export type RestaurantMenuProps = {
+declare type RestaurantMenuProps = {
     image: string
     title: string
     description: string
@@ -47,22 +47,22 @@ export type RestaurantMenuProps = {
     onOpenModal: () => void
 }
 
-export type TagProps = {
+declare type TagProps = {
     children: string
 }
 
-export type CartState = {
+declare type CartState = {
     items: MenuRestaurant[]
     isOpen: boolean
     currentStep: 'cart' | 'delivery' | 'payment' | 'finish'
 }
 
-export type Product = {
+declare type Product = {
     id: number
     price: number
 }
 
-export type PurchasePayload = {
+declare type PurchasePayload = {
     products: Product[]
     delivery: {
         receiver: string
@@ -85,4 +85,8 @@ export type PurchasePayload = {
             }
         }
     }
+}
+
+declare type PurchaseResponse = {
+    orderId: string
 }
