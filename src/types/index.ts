@@ -9,6 +9,7 @@ export type MenuRestaurant = {
 
 export type MenuProps = {
     menu: MenuRestaurant[]
+    isLoading: boolean
 }
 
 export type Restaurants = {
@@ -23,6 +24,7 @@ export type Restaurants = {
 }
 
 export type RestaurantsProps = {
+    isLoading: boolean
     restaurants: Restaurants[]
 }
 

@@ -1,22 +1,19 @@
 import { useGetOnRestaurantsQuery } from "../../services/api"
 
 import RestaurantList from "../../components/RestaurantList"
+import Loader from "../../components/Loader"
 
 const Home = () => {
-    const { data: restaurantes } = useGetOnRestaurantsQuery()
+    const { data: restaurantes, isLoading } = useGetOnRestaurantsQuery()
 
-    if (restaurantes) {
-        return(
-            <>
-                <RestaurantList restaurants={restaurantes} />
-            </>
-        )
+    if(!restaurantes) {
+        return <Loader />
     }
 
-    return (
-        <div className="container-loading">
-            <h4>Carregando...</h4>
-        </div>
+    return(
+        <>
+            <RestaurantList isLoading={isLoading} restaurants={restaurantes} />
+        </>
     )
 }
 
