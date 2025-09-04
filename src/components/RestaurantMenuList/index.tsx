@@ -102,7 +102,7 @@ const RestaurantMenuList = ({ menu }: MenuProps) => {
                         )}
                     </S.Content>
                 </S.ModalContainer>
-                <div className="overlay" onClick={closeModal}></div>
+                <div className="overlay" onClick={closeModal} title='Clique aqui para fechar' />
             </S.Modal>
         </>
     )

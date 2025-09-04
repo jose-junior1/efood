@@ -1,4 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux'
+import { useState } from 'react'
 import { useFormik } from 'formik' // biblioteca para criação de formulários
 import * as Yup from 'yup' // biblioteca para validação de formulários
 import { IMaskInput } from 'react-imask'
@@ -11,6 +12,7 @@ import { parseToBrl } from '../../utils'
 
 import * as S from './styles'
 
+// validação de campos de entrega
 const validationSchemaDelivery = Yup.object({
     name: Yup.string()
         .min(5, 'O nome precisa ter pelo menos 5 caracteres')
@@ -32,12 +34,13 @@ const validationSchemaDelivery = Yup.object({
         .max(13, 'O campo deve ter no máximo 13 caracteres'),
 })
 
+// validação de campos de pagamento
 const validationSchemaPayment = Yup.object({
     cardName: Yup.string()
         .min(5, 'O campo precisa ter pelo menos 5 caracteres')
         .required('O campo é obrigatório'),
     cardNumber: Yup.string()
-        .length(19, 'O campo deve ter 16 dígitos')
+        .length(19, 'O campo deve ter 19 dígitos')
         .required('O campo é obrigatório'),
     cvv: Yup.string()
         .min(3, 'O CVV deve ter no mínimo 3 dígitos')
@@ -53,78 +56,96 @@ const validationSchemaPayment = Yup.object({
 
 export const AsideGlobal = () => {
     const { isOpen, items, currentStep } = useSelector((state: RootReducer) => state.cart)
+    const dispatch = useDispatch()
 
     const [purchase, { data }] = usePurchaseMutation()
 
-    const form = useFormik({
+    // estado para armazenar os dados de entrega
+    const [deliveryData, setDeliveryData] = useState<null | {
+        name: string
+        address: string
+        city: string
+        cep: string
+        numberHome: string
+        complement?: string
+    }>(null)
+
+    // formulario de dados de entrega
+    const formDelivery = useFormik({
         initialValues: {
-            // dados de entrega
             name: '',
             address: '',
             city: '',
             cep: '',
             numberHome: '',
             complement: '', // opcional
+        },
+        validationSchema: validationSchemaDelivery,
+        onSubmit: (values) => {
+            setDeliveryData(values)
+            dispatch(goToPayment())
+        }
+    })
 
-            // dados de pagamento
+    // formulario de dados de pagamento
+    const formPayment = useFormik({
+        initialValues: {
             cardName: '',
             cardNumber: '',
             cvv: '',
             expirationMonth: '',
             expirationYear: ''
         },
-        // separei os dois formulários em duas constantes pois estavam em seções diferentes
-        validationSchema: currentStep === 'delivery' ? validationSchemaDelivery : validationSchemaPayment,
-        onSubmit: (values) => {
-            // valida se o formulário está preenchido e avança para a próxima seção
-            if (currentStep === 'delivery') { // libera para pagamento
-                dispatch(goToPayment())
-            } else if (currentStep === 'payment') { // pega os dados de entrega e pagamento, os envia e libera para a confirmação de pedido
+        validationSchema: validationSchemaPayment, onSubmit: (values) => {
+            if (deliveryData) { // impossibilita ir para o pagamento com dados de entrega vazios
                 const purchaseData = {
-                    products: [
-                        {
-                            id: 1,
-                            price: 300
-                        }
-                    ],
-                    delivery: {
-                        receiver: values.name
-                    },
-                    address: {
-                        description: values.address,
-                        city: values.city,
-                        zipCode: values.cep,
-                        number: Number(values.numberHome),
-                        complement: values.complement
-                    },
-                    payment: {
-                        card: {
-                            name: values.cardName,
-                            number: values.cardNumber,
-                            code: Number(values.cvv),
-                            expires: {
-                                month: Number(values.expirationMonth),
-                                year: Number(values.expirationYear)
-                            }
+                products: [
+                    {
+                        id: 1,
+                        price: 300
+                    }
+                ],
+                delivery: {
+                    receiver: deliveryData.name
+                },
+                address: {
+                    description: deliveryData.address,
+                    city: deliveryData.city,
+                    zipCode: deliveryData.cep,
+                    number: Number(deliveryData.numberHome),
+                    complement: deliveryData.complement
+                },
+                payment: {
+                    card: {
+                        name: values.cardName,
+                        number: values.cardNumber,
+                        code: Number(values.cvv),
+                        expires: {
+                            month: Number(values.expirationMonth),
+                            year: Number(values.expirationYear)
                         }
                     }
                 }
-                purchase(purchaseData)
-                dispatch(goToFinish())
+            }
+            purchase(purchaseData)
+            dispatch(goToFinish())
             }
         }
     })
 
-    const checkInputHasError = (fieldName: string) => {
+    // Função para verificar se um campo de formulário possui erro
+    const checkInputHasError = (form: typeof formDelivery | typeof formPayment, fieldName: string) => {
+        // Verifica se o campo já foi tocado pelo usuário
         const isTouched = fieldName in form.touched
+
+        // Verifica se o campo possui erro de validação
         const isInvalid = fieldName in form.errors
+
+        // Considera que há erro somente se o campo foi tocado e está inválido
         const hasError = isTouched && isInvalid
 
         return hasError
     }
-
-
-    const dispatch = useDispatch()
 
     const closeAside = () => {
         dispatch(close())
@@ -135,8 +156,12 @@ export const AsideGlobal = () => {
     }
 
     const totalPrices = () => {
-        return items.reduce((accumulator, currentValue) => {
-            return (accumulator += currentValue.preco!)
+        return items.reduce((accumulator, currenItem) => {
+            if (currenItem.preco) {
+                return (accumulator += currenItem.preco)
+            }
+
+            return 0
         }, 0)
     }
 
@@ -193,7 +218,7 @@ export const AsideGlobal = () => {
             )
         } else if (currentStep === 'delivery') {
             return (
-                <form onSubmit={form.handleSubmit}>
+                <form onSubmit={formDelivery.handleSubmit}>
                     <div>
                         <h2>Entrega</h2>
                         <S.InputGroup>
@@ -202,11 +227,11 @@ export const AsideGlobal = () => {
                                 id='name'
                                 type="text"
                                 name='name'
-                                value={form.values.name}
-                                onChange={form.handleChange}
-                                onBlur={form.handleBlur}
-                                placeholder={checkInputHasError('name') ? '!' : ''}
-                                className={checkInputHasError('name') ? 'error' : ''}
+                                value={formDelivery.values.name}
+                                onChange={formDelivery.handleChange}
+                                onBlur={formDelivery.handleBlur}
+                                placeholder={checkInputHasError(formDelivery, 'name') ? 'O campo é obrigatório' : ''}
+                                className={checkInputHasError(formDelivery, 'name') ? 'error' : ''}
                             />
                         </S.InputGroup>
                         <S.InputGroup>
@@ -215,11 +240,11 @@ export const AsideGlobal = () => {
                                 id='address'
                                 type="text"
                                 name='address'
-                                value={form.values.address}
-                                onChange={form.handleChange}
-                                onBlur={form.handleBlur}
-                                placeholder={checkInputHasError('adress') ? '!' : ''}
-                                className={checkInputHasError('address') ? 'error' : ''}
+                                value={formDelivery.values.address}
+                                onChange={formDelivery.handleChange}
+                                onBlur={formDelivery.handleBlur}
+                                placeholder={checkInputHasError(formDelivery, 'address') ? 'O campo é obrigatório' : ''}
+                                className={checkInputHasError(formDelivery, 'address') ? 'error' : ''}
                             />
                         </S.InputGroup>
                         <S.InputGroup>
@@ -228,10 +253,11 @@ export const AsideGlobal = () => {
                                 id='city'
                                 type="text"
                                 name='city'
-                                value={form.values.city}
-                                onChange={form.handleChange}
-                                onBlur={form.handleBlur}
-                                className={checkInputHasError('city') ? 'error' : ''}
+                                value={formDelivery.values.city}
+                                onChange={formDelivery.handleChange}
+                                onBlur={formDelivery.handleBlur}
+                                placeholder={checkInputHasError(formDelivery, 'address') ? 'O campo é obrigatório' : ''}
+                                className={checkInputHasError(formDelivery, 'city') ? 'error' : ''}
                             />
                         </S.InputGroup>
                         <div className='home-group'>
@@ -242,11 +268,11 @@ export const AsideGlobal = () => {
                                     id='cep'
                                     type="text"
                                     name='cep'
-                                    value={form.values.cep}
-                                    onChange={form.handleChange}
-                                    onBlur={form.handleBlur}
-                                    placeholder={checkInputHasError('cep') ? '!' : ''}
-                                    className={checkInputHasError('cep') ? 'error' : ''}
+                                    value={formDelivery.values.cep}
+                                    onChange={formDelivery.handleChange}
+                                    onBlur={formDelivery.handleBlur}
+                                    placeholder={checkInputHasError(formDelivery, 'cep') ? 'O campo é obrigatório' : ''}
+                                    className={checkInputHasError(formDelivery, 'cep') ? 'error' : ''}
                                     inputMode='numeric'
                                 />
                             </S.InputGroup>
@@ -256,11 +282,12 @@ export const AsideGlobal = () => {
                                     id='numberHome'
                                     type="text"
                                     name='numberHome'
-                                    value={form.values.numberHome}
-                                    onChange={form.handleChange}
-                                    onBlur={form.handleBlur}
-                                    placeholder={checkInputHasError('numberHome') ? '!' : ''}
-                                    className={checkInputHasError('numberHome') ? 'error' : ''}
+                                    value={formDelivery.values.numberHome}
+                                    onChange={formDelivery.handleChange}
+                                    onBlur={formDelivery.handleBlur}
+                                    placeholder={checkInputHasError(formDelivery, 'numberHome') ? 'O campo é obrigatório' : ''}
+                                    className={checkInputHasError(formDelivery, 'numberHome') ? 'error' : ''}
+                                    inputMode='numeric'
                                 />
                             </S.InputGroup>
                         </div>
@@ -270,10 +297,10 @@ export const AsideGlobal = () => {
                                 id='complement'
                                 type="text"
                                 name='complement'
-                                value={form.values.complement}
-                                onChange={form.handleChange}
-                                onBlur={form.handleBlur}
-                                className={checkInputHasError('complement') ? 'error' : ''}
+                                value={formDelivery.values.complement}
+                                onChange={formDelivery.handleChange}
+                                onBlur={formDelivery.handleBlur}
+                                className={checkInputHasError(formDelivery, 'complement') ? 'error' : ''}
                             />
                         </S.InputGroup>
                     </div>
@@ -285,7 +312,7 @@ export const AsideGlobal = () => {
             )
         } else if (currentStep === 'payment') {
             return (
-                <form onSubmit={form.handleSubmit}>
+                <form onSubmit={formPayment.handleSubmit}>
                     <div>
                         <h2>Pagamento - Valor a pagar {parseToBrl(totalPrices())}</h2>
                         <S.InputGroup>
@@ -294,11 +321,11 @@ export const AsideGlobal = () => {
                                 id='cardName'
                                 type="text"
                                 name='cardName'
-                                value={form.values.cardName}
-                                onChange={form.handleChange}
-                                onBlur={form.handleBlur}
-                                placeholder={checkInputHasError('cardName') ? '!' : ''}
-                                className={checkInputHasError('cardName') ? 'error' : ''}
+                                value={formPayment.values.cardName}
+                                onChange={formPayment.handleChange}
+                                onBlur={formPayment.handleBlur}
+                                placeholder={checkInputHasError(formPayment, 'cardName') ? 'O campo é obrigatório' : ''}
+                                className={checkInputHasError(formPayment, 'cardName') ? 'error' : ''}
                             />
                         </S.InputGroup>
                         <div className="card-group">
@@ -309,11 +336,11 @@ export const AsideGlobal = () => {
                                     id='cardNumber'
                                     type="text"
                                     name='cardNumber'
-                                    value={form.values.cardNumber}
-                                    onChange={form.handleChange}
-                                    onBlur={form.handleBlur}
-                                    placeholder={checkInputHasError('cardNumber') ? '!' : ''}
-                                    className={checkInputHasError('cardNumber') ? 'error' : ''}
+                                    value={formPayment.values.cardNumber}
+                                    onChange={formPayment.handleChange}
+                                    onBlur={formPayment.handleBlur}
+                                    placeholder={checkInputHasError(formPayment, 'cardNumber') ? 'O campo é obrigatório' : ''}
+                                    className={checkInputHasError(formPayment, 'cardNumber') ? 'error' : ''}
                                     inputMode='numeric'
                                 />
                             </S.InputGroup>
@@ -324,11 +351,11 @@ export const AsideGlobal = () => {
                                     id='cvv'
                                     type="text"
                                     name='cvv'
-                                    value={form.values.cvv}
-                                    onChange={form.handleChange}
-                                    onBlur={form.handleBlur}
-                                    placeholder={checkInputHasError('cvv') ? '!' : ''}
-                                    className={checkInputHasError('cvv') ? 'error' : ''}
+                                    value={formPayment.values.cvv}
+                                    onChange={formPayment.handleChange}
+                                    onBlur={formPayment.handleBlur}
+                                    placeholder={checkInputHasError(formPayment, 'cvv') ? 'Obrigatório' : ''}
+                                    className={checkInputHasError(formPayment, 'cvv') ? 'error' : ''}
                                     inputMode='numeric'
                                 />
                             </S.InputGroup>
@@ -341,11 +368,11 @@ export const AsideGlobal = () => {
                                     id='expirationMonth'
                                     type="text"
                                     name='expirationMonth'
-                                    value={form.values.expirationMonth}
-                                    onChange={form.handleChange}
-                                    onBlur={form.handleBlur}
-                                    placeholder={checkInputHasError('expirationMonth') ? '!' : ''}
-                                    className={checkInputHasError('expirationMonth') ? 'error' : ''}
+                                    value={formPayment.values.expirationMonth}
+                                    onChange={formPayment.handleChange}
+                                    onBlur={formPayment.handleBlur}
+                                    placeholder={checkInputHasError(formPayment, 'expirationMonth') ? 'O campo é obrigatório' : ''}
+                                    className={checkInputHasError(formPayment, 'expirationMonth') ? 'error' : ''}
                                     inputMode='numeric'
                                 />
                             </S.InputGroup>
@@ -356,11 +383,11 @@ export const AsideGlobal = () => {
                                     id='expirationYear'
                                     type="text"
                                     name='expirationYear'
-                                    value={form.values.expirationYear}
-                                    onChange={form.handleChange}
-                                    onBlur={form.handleBlur}
-                                    placeholder={checkInputHasError('expirationYear') ? '!' : ''}
-                                    className={checkInputHasError('expirationYear') ? 'error' : ''}
+                                    value={formPayment.values.expirationYear}
+                                    onChange={formPayment.handleChange}
+                                    onBlur={formPayment.handleBlur}
+                                    placeholder={checkInputHasError(formPayment, 'expirationYear') ? 'O campo é obrigatório' : ''}
+                                    className={checkInputHasError(formPayment, 'expirationYear') ? 'error' : ''}
                                     inputMode='numeric'
                                 />
                             </S.InputGroup>

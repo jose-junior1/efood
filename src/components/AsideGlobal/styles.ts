@@ -134,11 +134,17 @@ export const InputGroup = styled.div`
             background-color: ${colors.lightRed};
 
             &::placeholder {
-                text-align: right;
+                text-align: center;
                 color: red;
                 font-weight: bold;
+                letter-spacing: 0;
+                font-size: 13px;
             }
         }
+    }
+
+    small {
+        color: ${colors.white};
     }
 `
 
@@ -242,7 +248,7 @@ export const Aside = styled.aside`
 
         .card-group {
             max-width: 100%;
-            grid-template-columns: 1fr 60px;
+            grid-template-columns: 1fr 90px;
             gap: 16px;
             justify-content: space-around;
             width: 100%;
