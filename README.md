@@ -45,15 +45,15 @@ efood/
 │   ├── assets/              # Logos, imagens e arquivo de definição de tipos de imagem
 │   ├── components/          # Componentes reutilizáveis
 │   ├── pages/               # Páginas Home e Restaurant
-|   ├── services/            # Requisição da API com RTK Query
-|   ├── store/               # Store contendo os reducers e middlewares
-|   |   └── reducers/        # Reducer do carrinho (adicionar, remover, abrir aside, avançar etapas, limpar fluxo)
+│   ├── services/            # Requisição da API com RTK Query
+│   ├── store/               # Store contendo os reducers e middlewares
+│   │   └── reducers/        # Reducer do carrinho (adicionar, remover, abrir aside, avançar etapas, limpar fluxo)
 │   ├── styles/              # Estilos globais e arquivo de cores
-|   ├── utils/               # Função de conversão de moeda para BRL
+│   ├── utils/               # Função de conversão de moeda para BRL
 │   ├── App.tsx              # Definição do app
 │   ├── index.tsx            # Ponto de entrada do app
-|   ├── routes.tsx           # Rotas do React Router
-|   └── types.d.ts           # Arquivos de declaração de tipos (todos os tipos utilizados no projeto estão aqui)
+│   ├── routes.tsx           # Rotas do React Router
+│   └── types.d.ts           # Arquivos de declaração de tipos (todos os tipos utilizados no projeto estão aqui)
 ├── .gitignore
 ├── .hintrc
 ├── package-lock.json
