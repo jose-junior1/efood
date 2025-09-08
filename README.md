@@ -1,46 +1,102 @@
-# Getting Started with Create React App
+# 🛒 eFood - e-commerce de restaurantes
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Este repositório contém o código-fonte do meu projeto feito no curso da EBAC, desenvolvido com **React**, **TypeScript**, **styled-components**, entre outras ferramentas. O objetivo é representar o fluxo de um e-commerce, onde o usuário visualiza os restaurantes disponíveis, acessam seus respectivos cardápios e os adicionam no carrinho.
 
-## Available Scripts
+Para demonstar o fluxo tempos a seção de checkout, onde o usuário digita os dados de endereço de entrega, a forma de pagamento, e, se estiver tudo ok finaliza o pedido com um orderId único.
 
-In the project directory, you can run:
+🔗 [Acesse o e-commerce online](https://efood-six-pearl.vercel.app/)
 
-### `npm start`
+---
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## ✨ Funcionalidades
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+- Página **Restaurantes** com destaque para os restaurantes.
+- Página do **Restaurante** listandoo cardápio do restaurante que é passado via id.
+- Aside global para fluxo completo de carrinho de compras > endereço de entrega > dados de pagamento > confirmação de pedido
+- Layout **responsivo** para desktop e mobile.
+- Estilização com **styled-components**.
+- Integração com api extena.
+- Código limpo, modularizado e reutilizável.
 
-### `npm test`
+---
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## 🛠️ Tecnologias Utilizadas
 
-### `npm run build`
+- [React](https://reactjs.org/)
+- [React Router DOM](https://reactrouter.com/)
+- [Styled-components](https://styled-components.com/)
+- [TypeScript](https://www.typescriptlang.org/docs/)
+- Redux
+- RTK Query
+- Formik
+- Yup
+- React Spinners
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+---
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## 📁 Estrutura do Projeto
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```bash
+efood/
+├── public/
+├── src/
+│   ├── assets/              # Logos, imagens e arquivo de definição de tipos de imagem
+│   ├── components/          # Componentes reutilizáveis
+│   ├── pages/               # Páginas Home e Restaurant
+|   ├── services/            # Requisição da API com RTK Query
+|   ├── store/               # Store contendo os reducers e middlewares
+|       ├── reducers/        # Reducer do carrinho (adicionar, remover, abrir aside, avançar etapas, limpar fluxo)
+│   ├── styles/              # Estilos globais e arquivo de cores
+|   ├── utils/               # Função de conversão de moeda para BRL
+│   ├── App.tsx              # Definição das rotas
+│   └── index.tsx            # Ponto de entrada do app
+|   └── routes.tsx           # Rotas do React Router
+|   └── types.d.ts           # Arquivos de declaração de tipos (todos os tipos utilizados no projeto estão aqui)
+├── .gitignore
+├── .hintrc
+├── package-lock.json
+├── package.json
+├── README.md
+├── tsconfig.json
+```
 
-### `npm run eject`
+---
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## 📌 Como rodar localmente
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+1. Clone o repositório:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+```bash
+git clone https://github.com/jose-junior1/efood
+cd efood
+```
+2. Instale as dependências:
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+```
+    npm install
+```
 
-## Learn More
+3. Inicie o servidor de desenvolvimento:
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+```
+    npm run start
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+4. Acesse o navegador:
+
+```
+    http://localhost:3000
+```
+
+---
+
+
+
+## 🚀 Deploy
+Este projeto está hospedado gratuitamente via Vercel:
+
+🌍 https://efood-six-pearl.vercel.app/
+
+---
+
+> Desenvolvido com 💙 por José Junior
