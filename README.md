@@ -11,7 +11,7 @@ Para demonstar o fluxo tempos a seção de checkout, onde o usuário digita os d
 ## ✨ Funcionalidades
 
 - Página **Restaurantes** com destaque para os restaurantes.
-- Página do **Restaurante** listandoo cardápio do restaurante que é passado via id.
+- Página do **Restaurante** listando cardápio do restaurante que é passado via id.
 - Aside global para fluxo completo de carrinho de compras > endereço de entrega > dados de pagamento > confirmação de pedido
 - Layout **responsivo** para desktop e mobile.
 - Estilização com **styled-components**.
