@@ -1,8 +1,6 @@
 # 🛒 eFood - e-commerce de restaurantes
 
-Este repositório contém o código-fonte do meu projeto feito no curso da EBAC, desenvolvido com **React**, **TypeScript**, **styled-components**, entre outras ferramentas. O objetivo é representar o fluxo de um e-commerce, onde o usuário visualiza os restaurantes disponíveis, acessam seus respectivos cardápios e os adicionam no carrinho.
-
-Para demonstar o fluxo tempos a seção de checkout, onde o usuário digita os dados de endereço de entrega, a forma de pagamento, e, se estiver tudo ok finaliza o pedido com um orderId único.
+Este projeto representa o fluxo de um e-commerce de restaurantes, desenvolvido com React, TypeScript e styled-components. O usuário pode visualizar restaurantes, acessar cardápios, adicionar itens ao carrinho e finalizar pedidos com checkout completo.
 
 🔗 [Acesse o e-commerce online](https://efood-six-pearl.vercel.app/)
 
@@ -12,10 +10,14 @@ Para demonstar o fluxo tempos a seção de checkout, onde o usuário digita os d
 
 - Página **Restaurantes** com destaque para os restaurantes.
 - Página do **Restaurante** listando cardápio do restaurante que é passado via id.
-- Aside global para fluxo completo de carrinho de compras > endereço de entrega > dados de pagamento > confirmação de pedido
+- Aside global para fluxo completo:
+    - Carrinho de compras
+    - Endereço de entrega
+    - Dados de pagamento
+    - Confirmação de pedido
 - Layout **responsivo** para desktop e mobile.
 - Estilização com **styled-components**.
-- Integração com api extena.
+- Integração com API externa.
 - Código limpo, modularizado e reutilizável.
 
 ---
@@ -45,19 +47,20 @@ efood/
 │   ├── pages/               # Páginas Home e Restaurant
 |   ├── services/            # Requisição da API com RTK Query
 |   ├── store/               # Store contendo os reducers e middlewares
-|       ├── reducers/        # Reducer do carrinho (adicionar, remover, abrir aside, avançar etapas, limpar fluxo)
+|   |   └── reducers/        # Reducer do carrinho (adicionar, remover, abrir aside, avançar etapas, limpar fluxo)
 │   ├── styles/              # Estilos globais e arquivo de cores
 |   ├── utils/               # Função de conversão de moeda para BRL
-│   ├── App.tsx              # Definição das rotas
-│   └── index.tsx            # Ponto de entrada do app
-|   └── routes.tsx           # Rotas do React Router
+│   ├── App.tsx              # Definição do app
+│   ├── index.tsx            # Ponto de entrada do app
+|   ├── routes.tsx           # Rotas do React Router
 |   └── types.d.ts           # Arquivos de declaração de tipos (todos os tipos utilizados no projeto estão aqui)
 ├── .gitignore
 ├── .hintrc
 ├── package-lock.json
 ├── package.json
 ├── README.md
-├── tsconfig.json
+└── tsconfig.json
+
 ```
 
 ---
