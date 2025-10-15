@@ -2,7 +2,7 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 
 const api = createApi({
     baseQuery: fetchBaseQuery({
-        baseUrl: 'https://ebac-fake-api.vercel.app/api/efood'
+        baseUrl: 'https://fakeapi-cyan.vercel.app/api/efood'
     }),
     endpoints: (builder) => ({
         getOnRestaurants: builder.query<Restaurants[], void>({
