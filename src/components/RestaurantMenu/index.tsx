@@ -10,7 +10,7 @@ const RestaurantMenu = ({ image, title, description, details, onOpenModal }: Res
                 <S.Description>{description}</S.Description>
             </S.ContainerInfos>
         </div>
-        <S.ButtonCart onClick={onOpenModal} title={`Clique aqui para ver os detalhes de ${title}`}>{details}</S.ButtonCart>
+        <S.ButtonCart className="more-details" onClick={onOpenModal} title={`Clique aqui para ver os detalhes de ${title}`}>{details}</S.ButtonCart>
     </S.Card>
 )}
 

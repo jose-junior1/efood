@@ -42,7 +42,7 @@ const Header = () => {
                         $page='restaurant'
                         className='container-restaurant-page'
                     >
-                        <S.LinkToHome to='/' title='Clique aqui para voltar para a página inicial'>
+                        <S.LinkToHome className='back-to-home' to='/' title='Clique aqui para voltar para a página inicial'>
                             Restaurantes
                         </S.LinkToHome>
                         <img className='restaurant-page-logo' src={logo} alt="eFood" />

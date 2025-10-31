@@ -207,7 +207,7 @@ export const AsideGlobal = () => {
                                     <h3>{item.nome}</h3>
                                     <span>{parseToBrl(item.preco)}</span>
                                 </div>
-                                <button onClick={() => removeItem(item.id)} type="button" title={`Remover ${item.nome}`} />
+                                <button className='remove-item' onClick={() => removeItem(item.id)} type="button" title={`Remover ${item.nome}`} />
                             </S.Item>
                         ))}
                     </ul>
@@ -224,7 +224,7 @@ export const AsideGlobal = () => {
                                 <div className='total'>
                                     <p>Total de itens selecionados: <span>{items.length}</span></p>
                                 </div>
-                                <S.Prices>
+                                <S.Prices className='total-value'>
                                     Valor total: <span>{parseToBrl(totalPrices())}</span>
                                 </S.Prices>
                                 <Button title="Clique aqui para continuar com a compra" type="button" onClick={handleContinueDelivery}>

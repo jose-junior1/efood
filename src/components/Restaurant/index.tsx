@@ -28,7 +28,7 @@ const Restaurant = ({ image, title, nota, description, star, infos, about, id }:
                 </div>
                 <S.Description>{description}</S.Description>
             </div>
-            <S.ButtonAbout to={`/restaurant/${id}`} title={`Clique aqui para ver o cardápio de ${title}`}>{about}</S.ButtonAbout>
+            <S.ButtonAbout className="about-restaurant" to={`/restaurant/${id}`} title={`Clique aqui para ver o cardápio de ${title}`}>{about}</S.ButtonAbout>
         </S.ContainerInfos>
     </S.Card>
 )

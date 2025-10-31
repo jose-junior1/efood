@@ -102,7 +102,7 @@ const RestaurantMenuList = ({ menu, isLoading }: MenuProps) => {
                         {isInCart ? (
                             <S.Button className='added' onClick={openAside} title='Clique aqui para ver no carrinho'>Produto adicionado ao carrinho</S.Button>
                         ) : (
-                            <S.Button onClick={addToCart} title={`Clique aqui para adicionar ao carrinho`}>Adicionar ao carrinho - {parseToBrl(selectedMenu?.preco)}</S.Button>
+                            <S.Button className='add-to-cart' onClick={addToCart} title={`Clique aqui para adicionar ao carrinho`}>Adicionar ao carrinho - {parseToBrl(selectedMenu?.preco)}</S.Button>
                         )}
                     </S.Content>
                 </S.ModalContainer>
