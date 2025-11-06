@@ -23,7 +23,7 @@ describe('Testes para fluxo de adição de vários itens e verificação de valo
         cy.get('div[title = "Clique aqui para fechar"]').click({force: true})
         cy.get('.back-to-home').click()
 
-        // Seleciona o quarto restaurante
+        // Seleciona o quinto restaurante
         cy.get('.about-restaurant').eq(4).click()
 
         // Seleciona o segundo item e o adiciona no carrinho
